@@ -5,7 +5,7 @@
 
 // ---------- FARVEPALETTE ----------
 $blue-grey: #CBD4DC;
-$pink:      #EEE0E8;
+$pink:      #FFF0F9;
 $navy:      #174D84;
 $sky:       #D7F3FF;
 $ink:       #12314f;
@@ -95,11 +95,9 @@ a{color:inherit; text-decoration:none;}
 
 .sidebar{
   background:var(--blue-grey);
-  padding:64px 44px 48px;
-  position:sticky;
-  top:0;
-  height:100vh;
-  overflow-y:auto;
+  padding:24px 44px 48px;
+  position:relative;
+  overflow:visible;
   display:flex;
   flex-direction:column;
 
@@ -116,9 +114,10 @@ a{color:inherit; text-decoration:none;}
   &::before{ background:rgba(23,77,132,0.2); }
 
   &::after{
-    background:var(--navy);
+    background:var(--pink);
     transform:scaleY(var(--navigation-progress, 0));
     transform-origin:top;
+    will-change:transform;
     transition:transform 0.12s linear;
   }
 
@@ -128,11 +127,16 @@ a{color:inherit; text-decoration:none;}
     font-size:2.6rem;
     letter-spacing:0.01em;
     line-height:1.1;
-    margin-bottom:48px;
+    margin-bottom:4px;
+
+    video{
+      display:block;
+      width:100%;
+      max-width:212px;
+      height:auto;
+    }
   }
 
-  nav{
-  }
 
   .nav-group{
     margin-bottom:36px;
@@ -419,6 +423,19 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
+// Forside-hero som ét samlet designet billede (portfolio.png) i stedet for tekst
+.hero--image{
+  padding:0;
+  overflow:hidden;
+  display:block;
+
+  img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+}
+
 // ---------- CASE STUDY (Peak.html + fremtidige projekt-sider) ----------
 .main--case{
   max-width:760px;
@@ -438,6 +455,68 @@ a{color:inherit; text-decoration:none;}
   .case-medium-image{ max-width:360px; }
   .case-triple-grid img{ max-height:300px; }
   .case-double-grid img{ max-height:420px; }
+}
+
+.case-peak-final-mockup{
+  height:clamp(340px, 45vw, 500px);
+  overflow:hidden;
+  border-radius:6px;
+
+  .case-full-image{
+    width:100%;
+    height:100%;
+    max-height:none;
+    object-fit:cover;
+    object-position:center 62%;
+    transform:scale(1.35);
+    transform-origin:center 62%;
+  }
+}
+
+// Staycation — samme luft og læsevenlige tekstbredde som Peak-siden
+.main--stay{
+  max-width:980px;
+
+  .case-subtitle{
+    font-style:italic;
+    max-width:none;
+  }
+
+  .case-copy{
+    gap:18px;
+    margin-bottom:36px;
+  }
+
+  .case-copy p,
+  .case-block-text{ max-width:none; }
+}
+
+.main--food .case-subtitle{
+  font-style:italic;
+  max-width:none;
+}
+
+.main--food{
+  .case-copy p,
+  .case-block-text{ max-width:none; }
+
+  .case-full-image,
+  .case-double-grid img,
+  .case-triple-grid img{
+    height:auto;
+    max-height:none;
+    object-fit:contain;
+  }
+}
+
+.case-full-image.case-persona-image{
+  max-height:none;
+  object-fit:contain;
+}
+
+.case-full-image.case-moodboard-image{
+  max-height:none;
+  object-fit:contain;
 }
 
 // Bredere variant til sider med store slides/skærmbilleder (fx Brandguide.html)
@@ -621,6 +700,44 @@ a{color:inherit; text-decoration:none;}
   transform:none;
 }
 
+// ---------- CASE-BLOCK: tydeligt hierarki mellem afsnit (fx stay.html) ----------
+// Stor luft MELLEM blokke (Persona → Moodboard → Sketches → Wireframe → Prototype),
+// men tæt sammenhæng MELLEM en bloks egen tekst og billede.
+.case-block{
+  margin-bottom:72px;
+
+  &:last-of-type{
+    margin-bottom:52px;
+  }
+
+  .case-eyebrow{
+    margin-top:0;
+  }
+
+  .case-full-image + .case-full-image{
+    margin-top:20px;
+  }
+}
+
+.case-block-text{
+  font-family:'Lora', serif;
+  font-size:1.1rem;
+  line-height:1.7;
+  color:rgba(23,77,132,0.9);
+  text-align:left;
+  max-width:600px;
+  margin:0 0 14px;
+}
+
+.case-subheading{
+  text-align:left;
+  font-family:'Lora', serif;
+  font-weight:700;
+  font-size:1.15rem;
+  color:var(--navy);
+  margin:26px 0 8px;
+}
+
 .case-related{
   margin-top:128px;
   padding-bottom:24px;
@@ -661,6 +778,11 @@ a{color:inherit; text-decoration:none;}
   font-size:clamp(2.2rem, 4vw, 3rem);
   color:var(--navy);
   margin-bottom:48px;
+}
+
+.contact-header{
+  width:100%;
+  max-width:900px;
 }
 
 .contact-form{
@@ -781,7 +903,7 @@ a{color:inherit; text-decoration:none;}
   h1{
     font-family:'Playfair Display', serif;
     font-weight:700;
-    font-size:clamp(2rem, 3.2vw, 2.7rem);
+    font-size:clamp(1.9rem, 3vw, 2.5rem);
     color:var(--navy);
   }
 }

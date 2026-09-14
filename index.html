@@ -6,7 +6,7 @@
 <title>Emilie Zadstrow Mørch Pedersen — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,23 +15,25 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="brand">Portfolio</div>
+    <a href="index.html" class="brand" aria-label="Til forsiden">
+      <video autoplay muted playsinline aria-hidden="true"><source src="img/logo.mp4" type="video/mp4"></video>
+    </a>
 
     <nav aria-label="Hovednavigation">
       <div class="nav-group">
         <div class="nav-label">WORK</div>
         <ul class="nav-links">
           <li><a href="Peak.html">Brand identity for Peak digital</a></li>
-          <li><a href="Brandguide.html">Brandguide for Peak digital</a></li>
-          <li><a href="#staycation">A prototype for staycations in Denmark</a></li>
-          <li><a href="#farmors">A visual storytelling and UX project for Farmors Food</a></li>
+          <li><a href="brandguide.html">Brandguide for Peak digital</a></li>
+          <li><a href="stay.html">A prototype for staycations in Denmark</a></li>
+          <li><a href="food.html">A visual storytelling and UX project for Farmors Food</a></li>
         </ul>
       </div>
 
       <div class="nav-group">
         <div class="nav-label">ABOUT ME</div>
         <ul class="nav-links">
-          <li><a href="why.html">Why multimediedesigner</a></li>
+          <li><a href="why.html">Why multimediedesign?</a></li>
           <li><a href="who.html">Who am I?</a></li>
         </ul>
       </div>
@@ -64,12 +66,8 @@
   <!-- MAIN -->
   <main class="main">
 
-    <section class="hero">
-      <div class="hero-photo">
-        <img src="img/selfie.jpeg" alt="Emilie Zadstrow Mørch Pedersen">
-      </div>
-      <h1>Emilie Zadstrow Mørch Pedersen</h1>
-      <p><em>Multimedia design student</em> driven by a passion for creativity, branding and visual storytelling.</p>
+    <section class="hero hero--image">
+      <img src="img/portfolio.png" alt="Emilie Zadstrow Mørch Pedersen — Portfolio. Multimediadesign student drevet af en passion for kreativitet, branding og visuel storytelling.">
     </section>
 
     <section class="gallery" aria-label="Udvalgte projekter">
@@ -82,7 +80,7 @@
         </span>
       </a>
 
-      <a class="gallery-item" href="Brandguide.html" id="peak-guide">
+      <a class="gallery-item" href="brandguide.html" id="peak-guide">
         <img src="img/brandguide-tablet.png" alt="Brandguide for Peak Digital, vist på tablet">
         <span class="gallery-overlay"></span>
         <span class="gallery-overlay-text">
@@ -91,7 +89,7 @@
         </span>
       </a>
 
-      <a class="gallery-item" href="#staycation" id="staycation">
+      <a class="gallery-item" href="stay.html" id="staycation">
         <img src="img/staycation-phone.png" alt="Ud i det fri hjemmeside, vist på telefon">
         <span class="gallery-overlay"></span>
         <span class="gallery-overlay-text">
@@ -100,7 +98,7 @@
         </span>
       </a>
 
-      <a class="gallery-item" href="#farmors" id="farmors">
+      <a class="gallery-item" href="food.html" id="farmors">
         <img src="img/farmors-laptop.jpeg" alt="Farmors Food hjemmeside, vist på laptop">
         <span class="gallery-overlay"></span>
         <span class="gallery-overlay-text">
@@ -114,6 +112,5 @@
 </div>
 
 <script src="js/script.js" defer></script>
-
 </body>
 </html>

@@ -15,7 +15,9 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <a href="index.html" class="brand">Portfolio</a>
+    <a href="index.html" class="brand" aria-label="Til forsiden">
+      <video autoplay muted playsinline aria-hidden="true"><source src="img/logo.mp4" type="video/mp4"></video>
+    </a>
 
     <nav aria-label="Hovednavigation">
       <div class="nav-group">
@@ -23,8 +25,8 @@
         <ul class="nav-links">
           <li><a href="index.html#peak-identity">Brand identity for Peak digital</a></li>
           <li><a href="Brandguide.html">Brandguide for Peak digital</a></li>
-          <li><a href="index.html#staycation">A prototype for staycations in Denmark</a></li>
-          <li><a href="index.html#farmors">A visual storytelling and UX project for Farmors Food</a></li>
+          <li><a href="stay.html">A prototype for staycations in Denmark</a></li>
+          <li><a href="food.html">A visual storytelling and UX project for Farmors Food</a></li>
         </ul>
       </div>
 
@@ -64,7 +66,10 @@
   <!-- MAIN -->
   <main class="main main--contact">
 
-    <h1 class="contact-heading">Contact</h1>
+    <header class="case-header contact-header">
+      <h1>Contact</h1>
+      <p class="case-subtitle">Have a question or want to collaborate? Feel free to send me a message.</p>
+    </header>
 
     <form class="contact-form" action="https://formspree.io/f/xaeyoaav" method="POST">
       <input type="hidden" name="_next" value="thanks.html">

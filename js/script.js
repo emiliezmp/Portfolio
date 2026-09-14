@@ -9,16 +9,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // Den lodrette linje i navigationen følger sidens scroll-position.
   const sidebar = document.querySelector('.sidebar');
   if (sidebar && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let navigationFrame;
+
     const updateNavigationProgress = () => {
       const maximumScroll = document.documentElement.scrollHeight - window.innerHeight;
       const progress = maximumScroll > 0 ? window.scrollY / maximumScroll : 1;
       sidebar.style.setProperty('--navigation-progress', Math.min(Math.max(progress, 0), 1));
+      navigationFrame = undefined;
     };
 
     updateNavigationProgress();
-    window.addEventListener('scroll', updateNavigationProgress, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (!navigationFrame) {
+        navigationFrame = window.requestAnimationFrame(updateNavigationProgress);
+      }
+    }, { passive: true });
     window.addEventListener('resize', updateNavigationProgress);
   }
+
+  // Logoet afspilles kun én gang og bliver derefter eksplicit sat på pause.
+  document.querySelectorAll('.brand video').forEach(video => {
+    video.addEventListener('ended', () => video.pause(), { once: true });
+  });
+
+  // Store projektbilleder afkodes uden for den kritiske scroll-rendering og
+  // hentes først, når de nærmer sig skærmen. Hero-billedet på forsiden er
+  // undtagelsen, da det skal stå klar med det samme.
+  document.querySelectorAll('main img').forEach(image => {
+    image.decoding = 'async';
+    if (!image.closest('.hero')) image.loading = 'lazy';
+  });
 
   const caseImages = document.querySelectorAll('.case-slide-grid img');
   const whoPhotoGrid = document.querySelector('.who-photo-grid');
