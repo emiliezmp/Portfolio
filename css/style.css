@@ -211,6 +211,13 @@ a {
   padding: 56px 56px 96px;
 }
 
+.menu-toggle {
+  display: none;
+}
+.sidebar nav[hidden] {
+  display: none !important;
+}
+
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
@@ -225,6 +232,66 @@ a {
   }
   .sidebar .brand {
     font-size: 2.1rem;
+  }
+  .sidebar .menu-toggle {
+    display: flex;
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    width: 68px;
+    height: 62px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .sidebar .menu-toggle::before {
+    content: "♥";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    color: var(--pink);
+    font-family: "Lora", serif;
+    font-weight: 400;
+    font-size: 4rem;
+    line-height: 1;
+    transform: translate(-50%, -50%) scaleX(1.18);
+    transition: color 0.2s ease;
+  }
+  .sidebar .menu-toggle span {
+    position: relative;
+    top: -3px;
+    z-index: 1;
+    display: block;
+    width: 28px;
+    height: 2px;
+    margin: 0 auto;
+    background: var(--navy);
+    transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  }
+  .sidebar .menu-toggle:hover::before, .sidebar .menu-toggle:focus-visible::before {
+    color: var(--navy);
+  }
+  .sidebar .menu-toggle:hover span, .sidebar .menu-toggle:focus-visible span {
+    background: var(--pink);
+  }
+  .sidebar .menu-toggle:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 3px;
+  }
+  .sidebar.is-menu-open .menu-toggle span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .sidebar.is-menu-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+  .sidebar.is-menu-open .menu-toggle span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .sidebar nav {
+    padding-top: 28px;
   }
   .main {
     padding: 40px 24px 72px;

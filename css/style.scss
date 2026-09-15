@@ -235,6 +235,9 @@ a{color:inherit; text-decoration:none;}
   padding:56px 56px 96px;
 }
 
+.menu-toggle{ display:none; }
+.sidebar nav[hidden]{ display:none !important; }
+
 @media (max-width: 900px){
   .layout{ grid-template-columns:1fr; }
   .back-to-top--contact-mobile{ display:flex; }
@@ -244,6 +247,64 @@ a{color:inherit; text-decoration:none;}
     padding:40px 32px;
 
     .brand{ font-size:2.1rem; }
+
+    .menu-toggle{
+      display:flex;
+      position:absolute;
+      top:28px;
+      right:28px;
+      width:68px;
+      height:62px;
+      padding:0;
+      border:0;
+      background:transparent;
+      flex-direction:column;
+      justify-content:center;
+      gap:5px;
+      cursor:pointer;
+
+      &::before{
+        content:'♥';
+        position:absolute;
+        inset:50% auto auto 50%;
+        color:var(--pink);
+        font-family:'Lora', serif;
+        font-weight:400;
+        font-size:4rem;
+        line-height:1;
+        transform:translate(-50%, -50%) scaleX(1.18);
+        transition:color 0.2s ease;
+      }
+
+      span{
+        position:relative;
+        top:-3px;
+        z-index:1;
+        display:block;
+        width:28px;
+        height:2px;
+        margin:0 auto;
+        background:var(--navy);
+        transition:transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      }
+
+      &:hover,
+      &:focus-visible{
+        &::before{ color:var(--navy); }
+
+        span{ background:var(--pink); }
+      }
+
+      &:focus-visible{ outline:2px solid var(--pink); outline-offset:3px; }
+    }
+
+    &.is-menu-open .menu-toggle{
+      span:first-child{ transform:translateY(7px) rotate(45deg); }
+      span:nth-child(2){ opacity:0; }
+      span:last-child{ transform:translateY(-7px) rotate(-45deg); }
+    }
+
+    nav{ padding-top:28px; }
   }
   .main{ padding:40px 24px 72px; }
   .sidebar::before,
