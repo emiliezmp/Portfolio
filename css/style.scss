@@ -80,6 +80,11 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
+// Kontaktformularen har kun brug for genvejen på små skærme.
+.back-to-top--contact-mobile{
+  display:none;
+}
+
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
 
@@ -129,11 +134,12 @@ a{color:inherit; text-decoration:none;}
     line-height:1.1;
     margin-bottom:4px;
 
-    video{
+    img,
+    .brand-logo-still{
       display:block;
-      width:100%;
-      max-width:212px;
+      width:155px;
       height:auto;
+      margin:0 auto;
     }
   }
 
@@ -231,6 +237,7 @@ a{color:inherit; text-decoration:none;}
 
 @media (max-width: 900px){
   .layout{ grid-template-columns:1fr; }
+  .back-to-top--contact-mobile{ display:flex; }
   .sidebar{
     position:relative;
     height:auto;
@@ -473,7 +480,15 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// Staycation — samme luft og læsevenlige tekstbredde som Peak-siden
+.case-full-image.case-peak-project-image{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:none;
+  max-height:none;
+  object-fit:contain;
+}
+
 .main--stay{
   max-width:980px;
 
@@ -509,6 +524,11 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
+.main--brandguide .case-subtitle{
+  font-style:italic;
+  max-width:none;
+}
+
 .case-full-image.case-persona-image{
   max-height:none;
   object-fit:contain;
@@ -517,6 +537,22 @@ a{color:inherit; text-decoration:none;}
 .case-full-image.case-moodboard-image{
   max-height:none;
   object-fit:contain;
+}
+
+.case-full-image.case-wireframe-image{
+  max-height:none;
+  object-fit:contain;
+}
+
+.case-full-image.case-stay-mockup-image{
+  max-height:none;
+  object-fit:contain;
+}
+
+.case-soft-box{
+  background:var(--pink);
+  padding:16px;
+  border-radius:6px;
 }
 
 // Bredere variant til sider med store slides/skærmbilleder (fx Brandguide.html)

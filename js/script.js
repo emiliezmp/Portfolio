@@ -6,6 +6,81 @@ document.addEventListener('DOMContentLoaded', () => {
   // Beviser at JavaScript rent faktisk kører — fjerner sikkerhedsnettet fra CSS'en
   document.body.classList.remove('no-js');
 
+  // GIF-filer styrer selv, hvor mange gange de looper. Logoet genstartes her
+  // én gang, hvorefter det sidste frame erstattes af et statisk canvas.
+  const getGifDuration = bytes => {
+    let pointer = 13;
+    let currentDelay = 10;
+    let duration = 0;
+    const globalColorTable = bytes[10];
+
+    if (globalColorTable & 0x80) {
+      pointer += 3 * (2 ** ((globalColorTable & 0x07) + 1));
+    }
+
+    const skipSubBlocks = () => {
+      while (pointer < bytes.length) {
+        const size = bytes[pointer++];
+        if (size === 0) break;
+        pointer += size;
+      }
+    };
+
+    while (pointer < bytes.length) {
+      const marker = bytes[pointer++];
+
+      if (marker === 0x21) {
+        const label = bytes[pointer++];
+        if (label === 0xf9) {
+          const size = bytes[pointer++];
+          currentDelay = bytes[pointer + 1] + (bytes[pointer + 2] << 8);
+          pointer += size + 1;
+        } else {
+          skipSubBlocks();
+        }
+      } else if (marker === 0x2c) {
+        const descriptor = bytes[pointer + 8];
+        pointer += 9;
+        if (descriptor & 0x80) {
+          pointer += 3 * (2 ** ((descriptor & 0x07) + 1));
+        }
+        pointer += 1;
+        skipSubBlocks();
+        duration += (currentDelay || 10) * 10;
+        currentDelay = 10;
+      } else if (marker === 0x3b) {
+        break;
+      }
+    }
+
+    return duration;
+  };
+
+  document.querySelectorAll('.brand img[src$="logo.gif"]').forEach(async logo => {
+    try {
+      const response = await fetch(logo.currentSrc);
+      const duration = getGifDuration(new Uint8Array(await response.arrayBuffer()));
+      if (!duration) return;
+
+      const source = new URL(logo.currentSrc);
+      source.searchParams.set('play-once', Date.now());
+      logo.addEventListener('load', () => {
+        window.setTimeout(() => {
+          const stillFrame = document.createElement('canvas');
+          stillFrame.className = 'brand-logo-still';
+          stillFrame.width = logo.naturalWidth;
+          stillFrame.height = logo.naturalHeight;
+          stillFrame.setAttribute('aria-hidden', 'true');
+          stillFrame.getContext('2d').drawImage(logo, 0, 0);
+          logo.replaceWith(stillFrame);
+        }, Math.max(0, duration - 30));
+      }, { once: true });
+      logo.src = source.toString();
+    } catch {
+      // Hvis GIF'en ikke kan læses (fx ved file://), vises den som normalt.
+    }
+  });
+
   // Den lodrette linje i navigationen følger sidens scroll-position.
   const sidebar = document.querySelector('.sidebar');
   if (sidebar && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -26,11 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
     window.addEventListener('resize', updateNavigationProgress);
   }
-
-  // Logoet afspilles kun én gang og bliver derefter eksplicit sat på pause.
-  document.querySelectorAll('.brand video').forEach(video => {
-    video.addEventListener('ended', () => video.pause(), { once: true });
-  });
 
   // Store projektbilleder afkodes uden for den kritiske scroll-rendering og
   // hentes først, når de nærmer sig skærmen. Hero-billedet på forsiden er

@@ -75,6 +75,10 @@ a {
   }
 }
 
+.back-to-top--contact-mobile {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -123,11 +127,12 @@ a {
   line-height: 1.1;
   margin-bottom: 4px;
 }
-.sidebar .brand video {
+.sidebar .brand img,
+.sidebar .brand .brand-logo-still {
   display: block;
-  width: 100%;
-  max-width: 212px;
+  width: 155px;
   height: auto;
+  margin: 0 auto;
 }
 .sidebar .nav-group {
   margin-bottom: 36px;
@@ -209,6 +214,9 @@ a {
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
+  }
+  .back-to-top--contact-mobile {
+    display: flex;
   }
   .sidebar {
     position: relative;
@@ -450,6 +458,16 @@ a {
   transform-origin: center 62%;
 }
 
+.case-full-image.case-peak-project-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .main--stay {
   max-width: 980px;
 }
@@ -471,6 +489,10 @@ a {
   max-width: none;
 }
 
+.main--food .case-copy p,
+.main--food .case-block-text {
+  max-width: none;
+}
 .main--food .case-full-image,
 .main--food .case-double-grid img,
 .main--food .case-triple-grid img {
@@ -479,8 +501,9 @@ a {
   -o-object-fit: contain;
      object-fit: contain;
 }
-.main--food .case-copy p,
-.main--food .case-block-text {
+
+.main--brandguide .case-subtitle {
+  font-style: italic;
   max-width: none;
 }
 
@@ -494,6 +517,24 @@ a {
   max-height: none;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.case-full-image.case-wireframe-image {
+  max-height: none;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.case-full-image.case-stay-mockup-image {
+  max-height: none;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.case-soft-box {
+  background: var(--pink);
+  padding: 16px;
+  border-radius: 6px;
 }
 
 .main--case-wide {
