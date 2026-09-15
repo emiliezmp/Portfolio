@@ -6,78 +6,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // Beviser at JavaScript rent faktisk kører — fjerner sikkerhedsnettet fra CSS'en
   document.body.classList.remove('no-js');
 
-  // GIF-filer styrer selv, hvor mange gange de looper. Logoet genstartes her
-  // én gang, hvorefter det sidste frame erstattes af et statisk canvas.
-  const getGifDuration = bytes => {
-    let pointer = 13;
-    let currentDelay = 10;
-    let duration = 0;
-    const globalColorTable = bytes[10];
+  // GIF'ens loop-indstilling ændres til én gennemspilning, uden at logoet
+  // erstattes. Browseren beholder derfor sidste frame synlig bagefter.
+  const makeGifPlayOnce = bytes => {
+    const signature = 'NETSCAPE2.0';
+    for (let index = 0; index < bytes.length - 19; index += 1) {
+      if (bytes[index] !== 0x21 || bytes[index + 1] !== 0xff || bytes[index + 2] !== 0x0b) continue;
 
-    if (globalColorTable & 0x80) {
-      pointer += 3 * (2 ** ((globalColorTable & 0x07) + 1));
-    }
-
-    const skipSubBlocks = () => {
-      while (pointer < bytes.length) {
-        const size = bytes[pointer++];
-        if (size === 0) break;
-        pointer += size;
-      }
-    };
-
-    while (pointer < bytes.length) {
-      const marker = bytes[pointer++];
-
-      if (marker === 0x21) {
-        const label = bytes[pointer++];
-        if (label === 0xf9) {
-          const size = bytes[pointer++];
-          currentDelay = bytes[pointer + 1] + (bytes[pointer + 2] << 8);
-          pointer += size + 1;
-        } else {
-          skipSubBlocks();
-        }
-      } else if (marker === 0x2c) {
-        const descriptor = bytes[pointer + 8];
-        pointer += 9;
-        if (descriptor & 0x80) {
-          pointer += 3 * (2 ** ((descriptor & 0x07) + 1));
-        }
-        pointer += 1;
-        skipSubBlocks();
-        duration += (currentDelay || 10) * 10;
-        currentDelay = 10;
-      } else if (marker === 0x3b) {
-        break;
+      const application = String.fromCharCode(...bytes.slice(index + 3, index + 14));
+      if (application === signature || application === 'ANIMEXTS1.0') {
+        // Fjern GIF'ens loop-blok helt. Uden den afspilles en GIF én gang,
+        // og browseren beholder sidste frame synlig.
+        const withoutLoop = new Uint8Array(bytes.length - 19);
+        withoutLoop.set(bytes.slice(0, index));
+        withoutLoop.set(bytes.slice(index + 19), index);
+        return withoutLoop;
       }
     }
-
-    return duration;
+    return bytes;
   };
 
   document.querySelectorAll('.brand img[src$="logo.gif"]').forEach(async logo => {
     try {
       const response = await fetch(logo.currentSrc);
-      const duration = getGifDuration(new Uint8Array(await response.arrayBuffer()));
-      if (!duration) return;
-
-      const source = new URL(logo.currentSrc);
-      source.searchParams.set('play-once', Date.now());
-      logo.addEventListener('load', () => {
-        window.setTimeout(() => {
-          const stillFrame = document.createElement('canvas');
-          stillFrame.className = 'brand-logo-still';
-          stillFrame.width = logo.naturalWidth;
-          stillFrame.height = logo.naturalHeight;
-          stillFrame.setAttribute('aria-hidden', 'true');
-          stillFrame.getContext('2d').drawImage(logo, 0, 0);
-          logo.replaceWith(stillFrame);
-        }, Math.max(0, duration - 30));
-      }, { once: true });
-      logo.src = source.toString();
+      const gif = makeGifPlayOnce(new Uint8Array(await response.arrayBuffer()));
+      const playbackUrl = URL.createObjectURL(new Blob([gif], { type: 'image/gif' }));
+      logo.addEventListener('load', () => URL.revokeObjectURL(playbackUrl), { once: true });
+      logo.src = playbackUrl;
     } catch {
-      // Hvis GIF'en ikke kan læses (fx ved file://), vises den som normalt.
+      // Ved file:// kan GIF-filen ikke læses; brug Live Server for denne funktion.
     }
   });
 
@@ -107,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // undtagelsen, da det skal stå klar med det samme.
   document.querySelectorAll('main img').forEach(image => {
     image.decoding = 'async';
-    if (!image.closest('.hero')) image.loading = 'lazy';
+    if (!image.closest('.hero') && !image.hasAttribute('loading')) image.loading = 'lazy';
   });
 
   const caseImages = document.querySelectorAll('.case-slide-grid img');

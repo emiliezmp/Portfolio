@@ -901,6 +901,10 @@ a {
   font-size: clamp(1.9rem, 3vw, 2.5rem);
   color: var(--navy);
 }
+.about-header .case-subtitle {
+  max-width: none;
+  font-style: italic;
+}
 
 .about-copy {
   display: flex;
@@ -924,6 +928,22 @@ a {
   gap: 16px;
   box-shadow: 0 8px 24px rgba(23, 77, 132, 0.12);
   margin-bottom: 8px;
+}
+
+.about-why-graphic {
+  width: 110%;
+  margin-bottom: 8px;
+}
+.about-why-graphic img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+@media (max-width: 900px) {
+  .about-why-graphic {
+    width: 100%;
+  }
 }
 
 .about-photo-single {
