@@ -388,6 +388,26 @@ a {
   transform: translateY(0);
 }
 
+#peak-identity img {
+  transform: scale(1.38);
+  transform-origin: 27% 50%;
+}
+
+#peak-identity:hover img,
+#peak-identity:focus-visible img {
+  transform: scale(1.43);
+}
+
+@media (max-width: 560px) {
+  #peak-identity img {
+    transform: scale(1.26);
+  }
+  #peak-identity:hover img,
+  #peak-identity:focus-visible img {
+    transform: scale(1.3);
+  }
+}
+
 .gallery-year {
   font-family: "Lora", serif;
   font-style: italic;
@@ -851,6 +871,10 @@ a {
 .contact-header {
   width: 100%;
   max-width: 900px;
+}
+.contact-header .case-subtitle {
+  max-width: none;
+  font-style: italic;
 }
 
 .contact-form {
