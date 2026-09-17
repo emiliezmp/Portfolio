@@ -214,6 +214,7 @@ a {
 .menu-toggle {
   display: none;
 }
+
 .sidebar nav[hidden] {
   display: none !important;
 }
@@ -1007,12 +1008,12 @@ a {
   height: auto;
   border-radius: 6px;
 }
+
 @media (max-width: 900px) {
   .about-why-graphic {
     width: 100%;
   }
 }
-
 .about-photo-single {
   width: 100%;
   aspect-ratio: 16/10;
