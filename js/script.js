@@ -78,14 +78,20 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   document.querySelectorAll('.brand img[src$="logo.gif"]').forEach(async logo => {
+    // Skjul den oprindelige, loopende GIF med det samme. Den erstattes først
+    // af den redigerede én-gangs-version, så den ikke når at hakke/genstarte.
+    logo.style.visibility = 'hidden';
     try {
       const response = await fetch(logo.currentSrc);
       const gif = makeGifPlayOnce(new Uint8Array(await response.arrayBuffer()));
       const playbackUrl = URL.createObjectURL(new Blob([gif], { type: 'image/gif' }));
-      logo.addEventListener('load', () => URL.revokeObjectURL(playbackUrl), { once: true });
+      logo.addEventListener('load', () => {
+        logo.style.visibility = 'visible';
+      }, { once: true });
       logo.src = playbackUrl;
     } catch {
       // Ved file:// kan GIF-filen ikke læses; brug Live Server for denne funktion.
+      logo.style.visibility = 'visible';
     }
   });
 
@@ -93,11 +99,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.querySelector('.sidebar');
   if (sidebar && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     let navigationFrame;
+    let lastNavigationProgress = -1;
 
     const updateNavigationProgress = () => {
       const maximumScroll = document.documentElement.scrollHeight - window.innerHeight;
       const progress = maximumScroll > 0 ? window.scrollY / maximumScroll : 1;
-      sidebar.style.setProperty('--navigation-progress', Math.min(Math.max(progress, 0), 1));
+      const clampedProgress = Math.min(Math.max(progress, 0), 1);
+      // Undgå at opdatere layout for mikroskopiske scroll-ændringer.
+      if (Math.abs(clampedProgress - lastNavigationProgress) > 0.003 || clampedProgress === 1) {
+        sidebar.style.setProperty('--navigation-progress', clampedProgress);
+        lastNavigationProgress = clampedProgress;
+      }
       navigationFrame = undefined;
     };
 
