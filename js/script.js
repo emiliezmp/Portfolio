@@ -57,44 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     syncMenuForViewport();
   });
 
-  // GIF'ens loop-indstilling ændres til én gennemspilning, uden at logoet
-  // erstattes. Browseren beholder derfor sidste frame synlig bagefter.
-  const makeGifPlayOnce = bytes => {
-    const signature = 'NETSCAPE2.0';
-    for (let index = 0; index < bytes.length - 19; index += 1) {
-      if (bytes[index] !== 0x21 || bytes[index + 1] !== 0xff || bytes[index + 2] !== 0x0b) continue;
-
-      const application = String.fromCharCode(...bytes.slice(index + 3, index + 14));
-      if (application === signature || application === 'ANIMEXTS1.0') {
-        // Fjern GIF'ens loop-blok helt. Uden den afspilles en GIF én gang,
-        // og browseren beholder sidste frame synlig.
-        const withoutLoop = new Uint8Array(bytes.length - 19);
-        withoutLoop.set(bytes.slice(0, index));
-        withoutLoop.set(bytes.slice(index + 19), index);
-        return withoutLoop;
-      }
-    }
-    return bytes;
-  };
-
-  document.querySelectorAll('.brand img[src$="logo.gif"]').forEach(async logo => {
-    // Skjul den oprindelige, loopende GIF med det samme. Den erstattes først
-    // af den redigerede én-gangs-version, så den ikke når at hakke/genstarte.
-    logo.style.visibility = 'hidden';
-    try {
-      const response = await fetch(logo.currentSrc);
-      const gif = makeGifPlayOnce(new Uint8Array(await response.arrayBuffer()));
-      const playbackUrl = URL.createObjectURL(new Blob([gif], { type: 'image/gif' }));
-      logo.addEventListener('load', () => {
-        logo.style.visibility = 'visible';
-      }, { once: true });
-      logo.src = playbackUrl;
-    } catch {
-      // Ved file:// kan GIF-filen ikke læses; brug Live Server for denne funktion.
-      logo.style.visibility = 'visible';
-    }
-  });
-
   // Den lodrette linje i navigationen følger sidens scroll-position.
   const sidebar = document.querySelector('.sidebar');
   if (sidebar && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
