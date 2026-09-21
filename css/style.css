@@ -708,7 +708,11 @@ a {
   height: auto;
   max-height: none;
   -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
+}
+
+.main--food > .case-block {
+  content-visibility: auto;
 }
 
 .main--brandguide .case-subtitle {

@@ -722,6 +722,10 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
+.main--food > .case-block{
+  content-visibility:auto;
+}
+
 .main--brandguide .case-subtitle{
   font-style:italic;
   max-width:none;

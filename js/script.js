@@ -57,6 +57,60 @@ document.addEventListener('DOMContentLoaded', () => {
     syncMenuForViewport();
   });
 
+  // GIF-loop tæller forskelligt på tværs af browsere. Derfor måles den første
+  // animations varighed, hvorefter den altid erstattes af det statiske SVG-logo.
+  const getGifDuration = bytes => {
+    let pointer = 13;
+    let frameDelay = 10;
+    let duration = 0;
+    const packedFields = bytes[10];
+
+    if (packedFields & 0x80) pointer += 3 * (2 ** ((packedFields & 0x07) + 1));
+
+    const skipSubBlocks = () => {
+      while (pointer < bytes.length) {
+        const size = bytes[pointer++];
+        if (size === 0) break;
+        pointer += size;
+      }
+    };
+
+    while (pointer < bytes.length) {
+      const marker = bytes[pointer++];
+      if (marker === 0x21) {
+        const label = bytes[pointer++];
+        if (label === 0xf9) {
+          const size = bytes[pointer++];
+          frameDelay = bytes[pointer + 1] + (bytes[pointer + 2] << 8);
+          pointer += size + 1;
+        } else {
+          skipSubBlocks();
+        }
+      } else if (marker === 0x2c) {
+        const descriptor = bytes[pointer + 8];
+        pointer += 9;
+        if (descriptor & 0x80) pointer += 3 * (2 ** ((descriptor & 0x07) + 1));
+        pointer += 1;
+        skipSubBlocks();
+        duration += (frameDelay || 10) * 10;
+        frameDelay = 10;
+      } else if (marker === 0x3b) {
+        break;
+      }
+    }
+    return duration;
+  };
+
+  document.querySelectorAll('.brand img[src*="logo.gif"]').forEach(async logo => {
+    try {
+      const response = await fetch(logo.currentSrc);
+      const duration = getGifDuration(new Uint8Array(await response.arrayBuffer()));
+      if (duration) window.setTimeout(() => { logo.src = 'img/logo.svg'; }, duration);
+    } catch {
+      // GIF'en bevarer sin egen én-gangs-indstilling, hvis filen ikke kan læses.
+    }
+  });
+
   // Den lodrette linje i navigationen følger sidens scroll-position.
   const sidebar = document.querySelector('.sidebar');
   if (sidebar && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
