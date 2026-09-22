@@ -7,7 +7,7 @@
 $blue-grey: #CBD4DC;
 $pink:      #FFF0F9;
 $navy:      #174D84;
-$sky:       #D7F3FF;
+$sky:       #ebe7e4;
 $ink:       #12314f;
 
 @use 'sass:color';
@@ -458,7 +458,7 @@ a{color:inherit; text-decoration:none;}
 
 // ---------- HOME (index.html) ----------
 .hero{
-  background:var(--pink);
+  background:var(--sky);
   padding:44px 48px 52px;
   border-radius:6px;
   display:flex;
@@ -594,7 +594,7 @@ a{color:inherit; text-decoration:none;}
 }
 
 .main--peak > .case-section{
-  background:var(--pink);
+  background:var(--sky);
   border:1px solid rgba(23,77,132,0.08);
   border-radius:6px;
   padding:20px;
@@ -637,7 +637,7 @@ a{color:inherit; text-decoration:none;}
 .main--stay > .case-copy,
 .main--stay > .case-block{
   box-sizing:border-box;
-  background:var(--pink);
+  background:var(--sky);
   border:1px solid rgba(23,77,132,0.08);
   border-radius:6px;
   padding:20px;
@@ -662,7 +662,7 @@ a{color:inherit; text-decoration:none;}
   .case-double-grid,
   .case-triple-grid{
     box-sizing:border-box;
-    background:var(--pink);
+    background:var(--sky);
     padding:16px;
     border-radius:6px;
   }
@@ -683,6 +683,11 @@ a{color:inherit; text-decoration:none;}
   padding:0;
 }
 
+.main--food .case-food-sketches-box .case-double-grid{
+  background:transparent;
+  padding:0;
+}
+
 // Lyserøde billedrammer på de øvrige projektsider.
 .main--case:not(.main--food){
   .case-full-image,
@@ -691,7 +696,7 @@ a{color:inherit; text-decoration:none;}
   .case-triple-grid,
   .case-slide-grid{
     box-sizing:border-box;
-    background:var(--pink);
+    background:var(--sky);
     padding:16px;
     border-radius:6px;
   }
@@ -699,7 +704,7 @@ a{color:inherit; text-decoration:none;}
 
 .who-photo-grid{
   box-sizing:border-box;
-  background:var(--pink);
+  background:var(--sky);
   padding:16px;
   border-radius:10px;
 }
@@ -752,7 +757,7 @@ a{color:inherit; text-decoration:none;}
 }
 
 .case-soft-box{
-  background:var(--pink);
+  background:var(--sky);
   padding:16px;
   border-radius:6px;
 }
@@ -887,7 +892,7 @@ a{color:inherit; text-decoration:none;}
 }
 
 .case-hero-box{
-  background:var(--pink);
+  background:var(--sky);
   border-radius:6px;
   padding:14px;
   margin-bottom:8px;
@@ -1180,7 +1185,7 @@ a{color:inherit; text-decoration:none;}
   box-shadow:0 8px 24px rgba(23,77,132,0.12);
   margin-bottom:8px;
 
-  &--pink{ background:var(--pink); box-shadow:none; }
+  &--pink{ background:var(--sky); box-shadow:none; }
 }
 
 .about-photo-single{
@@ -1608,7 +1613,7 @@ a{color:inherit; text-decoration:none;}
 }
 
 .thanks-card{
-  background:var(--pink);
+  background:var(--sky);
   padding:56px 64px;
   border-radius:10px;
   text-align:left;

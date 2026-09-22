@@ -3,7 +3,7 @@
   --blue-grey: #CBD4DC;
   --pink: #FFF0F9;
   --navy: #174D84;
-  --sky: #D7F3FF;
+  --sky: #ebe7e4;
   --ink: #12314f;
 }
 
@@ -445,7 +445,7 @@ a {
   }
 }
 .hero {
-  background: var(--pink);
+  background: var(--sky);
   padding: 44px 48px 52px;
   border-radius: 6px;
   display: flex;
@@ -585,7 +585,7 @@ a {
 }
 
 .main--peak > .case-section {
-  background: var(--pink);
+  background: var(--sky);
   border: 1px solid rgba(23, 77, 132, 0.08);
   border-radius: 6px;
   padding: 20px;
@@ -629,7 +629,7 @@ a {
 .main--stay > .case-copy,
 .main--stay > .case-block {
   box-sizing: border-box;
-  background: var(--pink);
+  background: var(--sky);
   border: 1px solid rgba(23, 77, 132, 0.08);
   border-radius: 6px;
   padding: 20px;
@@ -655,7 +655,7 @@ a {
 .main--food .case-double-grid,
 .main--food .case-triple-grid {
   box-sizing: border-box;
-  background: var(--pink);
+  background: var(--sky);
   padding: 16px;
   border-radius: 6px;
 }
@@ -675,20 +675,25 @@ a {
   padding: 0;
 }
 
+.main--food .case-food-sketches-box .case-double-grid {
+  background: transparent;
+  padding: 0;
+}
+
 .main--case:not(.main--food) .case-full-image,
 .main--case:not(.main--food) .case-medium-image,
 .main--case:not(.main--food) .case-double-grid:not(.case-soft-box),
 .main--case:not(.main--food) .case-triple-grid,
 .main--case:not(.main--food) .case-slide-grid {
   box-sizing: border-box;
-  background: var(--pink);
+  background: var(--sky);
   padding: 16px;
   border-radius: 6px;
 }
 
 .who-photo-grid {
   box-sizing: border-box;
-  background: var(--pink);
+  background: var(--sky);
   padding: 16px;
   border-radius: 10px;
 }
@@ -708,7 +713,7 @@ a {
   height: auto;
   max-height: none;
   -o-object-fit: contain;
-  object-fit: contain;
+     object-fit: contain;
 }
 
 .main--food > .case-block {
@@ -745,7 +750,7 @@ a {
 }
 
 .case-soft-box {
-  background: var(--pink);
+  background: var(--sky);
   padding: 16px;
   border-radius: 6px;
 }
@@ -875,7 +880,7 @@ a {
 }
 
 .case-hero-box {
-  background: var(--pink);
+  background: var(--sky);
   border-radius: 6px;
   padding: 14px;
   margin-bottom: 8px;
@@ -1147,7 +1152,7 @@ a {
   margin-bottom: 8px;
 }
 .about-photo-card--pink {
-  background: var(--pink);
+  background: var(--sky);
   box-shadow: none;
 }
 
@@ -1626,7 +1631,7 @@ a {
 }
 
 .thanks-card {
-  background: var(--pink);
+  background: var(--sky);
   padding: 56px 64px;
   border-radius: 10px;
   text-align: left;
