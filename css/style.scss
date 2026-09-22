@@ -688,6 +688,11 @@ a{color:inherit; text-decoration:none;}
   padding:0;
 }
 
+.main--food .case-food-prototype-box .case-full-image{
+  background:transparent;
+  padding:0;
+}
+
 // Lyserøde billedrammer på de øvrige projektsider.
 .main--case:not(.main--food){
   .case-full-image,
@@ -1187,6 +1192,8 @@ a{color:inherit; text-decoration:none;}
 
   &--pink{ background:var(--sky); box-shadow:none; }
 }
+
+.page-why .about-photo-card--pink{ background:var(--pink); }
 
 .about-photo-single{
   width:100%;

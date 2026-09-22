@@ -680,6 +680,11 @@ a {
   padding: 0;
 }
 
+.main--food .case-food-prototype-box .case-full-image {
+  background: transparent;
+  padding: 0;
+}
+
 .main--case:not(.main--food) .case-full-image,
 .main--case:not(.main--food) .case-medium-image,
 .main--case:not(.main--food) .case-double-grid:not(.case-soft-box),
@@ -1154,6 +1159,10 @@ a {
 .about-photo-card--pink {
   background: var(--sky);
   box-shadow: none;
+}
+
+.page-why .about-photo-card--pink {
+  background: var(--pink);
 }
 
 .about-photo-single {
