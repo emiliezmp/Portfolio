@@ -4,6 +4,102 @@ document.addEventListener('DOMContentLoaded', () => {
   // Beviser at JavaScript rent faktisk kører — fjerner sikkerhedsnettet fra CSS'en
   document.body.classList.remove('no-js');
 
+  // Afspil logo-GIF'en én gang i browserfanen, frys sidste frame, og genbrug
+  // stillbilledet på de efterfølgende sider.
+  const logoStillKey = 'portfolio-logo-still';
+  let savedLogoStill = null;
+  try {
+    savedLogoStill = sessionStorage.getItem(logoStillKey);
+  } catch {
+    // Privat browsing eller file:// kan blokere sessionStorage.
+  }
+  const logos = document.querySelectorAll('.brand img[src*="logo.gif"]');
+
+  if (savedLogoStill) {
+    logos.forEach(logo => { logo.src = savedLogoStill; });
+  } else {
+    const getGifDuration = bytes => {
+      let pointer = 13;
+      let frameDelay = 10;
+      let duration = 0;
+      const packedFields = bytes[10];
+
+      if (packedFields & 0x80) pointer += 3 * (2 ** ((packedFields & 0x07) + 1));
+
+      const skipSubBlocks = () => {
+        while (pointer < bytes.length) {
+          const size = bytes[pointer++];
+          if (size === 0) break;
+          pointer += size;
+        }
+      };
+
+      while (pointer < bytes.length) {
+        const marker = bytes[pointer++];
+        if (marker === 0x21) {
+          const label = bytes[pointer++];
+          if (label === 0xf9) {
+            const size = bytes[pointer++];
+            frameDelay = bytes[pointer + 1] + (bytes[pointer + 2] << 8);
+            pointer += size + 1;
+          } else {
+            skipSubBlocks();
+          }
+        } else if (marker === 0x2c) {
+          const descriptor = bytes[pointer + 8];
+          pointer += 9;
+          if (descriptor & 0x80) pointer += 3 * (2 ** ((descriptor & 0x07) + 1));
+          pointer += 1;
+          skipSubBlocks();
+          duration += (frameDelay || 10) * 10;
+          frameDelay = 10;
+        } else if (marker === 0x3b) {
+          break;
+        }
+      }
+
+      return duration;
+    };
+
+    logos.forEach(async logo => {
+      try {
+        const response = await fetch(logo.currentSrc);
+        const duration = getGifDuration(new Uint8Array(await response.arrayBuffer()));
+        if (!duration) return;
+
+        window.setTimeout(() => {
+          const canvas = document.createElement('canvas');
+          canvas.width = logo.naturalWidth;
+          canvas.height = logo.naturalHeight;
+          const context = canvas.getContext('2d');
+          if (!context) return;
+          context.drawImage(logo, 0, 0);
+          const still = canvas.toDataURL('image/png');
+          logo.src = still;
+
+          try {
+            sessionStorage.setItem(logoStillKey, still);
+          } catch {
+            // Logoet er stadig fastfrosset på den aktuelle side, hvis lageret er fuldt.
+          }
+        }, duration + 100);
+      } catch {
+        // GIF-filen er allerede sat til én afspilning og fungerer som fallback.
+      }
+    });
+  }
+
+  // Vis først tilbage-til-top-knappen, når brugeren er kommet lidt ned på siden.
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    const updateBackToTop = () => {
+      backToTop.classList.toggle('is-visible', window.scrollY > 240);
+    };
+
+    updateBackToTop();
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+  }
+
   // Fælles burger-menu på tablet og mobil. Navigationen findes allerede på
   // alle sider, så knappen kan oprettes ét sted og bruges overalt.
   document.querySelectorAll('.sidebar').forEach(sidebar => {
@@ -53,60 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
     mobileMenu.addEventListener('change', syncMenuForViewport);
     syncMenuForViewport();
-  });
-
-  // GIF-loop tæller forskelligt på tværs af browsere. Derfor måles den første
-  // animations varighed, hvorefter den altid erstattes af det statiske SVG-logo.
-  const getGifDuration = bytes => {
-    let pointer = 13;
-    let frameDelay = 10;
-    let duration = 0;
-    const packedFields = bytes[10];
-
-    if (packedFields & 0x80) pointer += 3 * (2 ** ((packedFields & 0x07) + 1));
-
-    const skipSubBlocks = () => {
-      while (pointer < bytes.length) {
-        const size = bytes[pointer++];
-        if (size === 0) break;
-        pointer += size;
-      }
-    };
-
-    while (pointer < bytes.length) {
-      const marker = bytes[pointer++];
-      if (marker === 0x21) {
-        const label = bytes[pointer++];
-        if (label === 0xf9) {
-          const size = bytes[pointer++];
-          frameDelay = bytes[pointer + 1] + (bytes[pointer + 2] << 8);
-          pointer += size + 1;
-        } else {
-          skipSubBlocks();
-        }
-      } else if (marker === 0x2c) {
-        const descriptor = bytes[pointer + 8];
-        pointer += 9;
-        if (descriptor & 0x80) pointer += 3 * (2 ** ((descriptor & 0x07) + 1));
-        pointer += 1;
-        skipSubBlocks();
-        duration += (frameDelay || 10) * 10;
-        frameDelay = 10;
-      } else if (marker === 0x3b) {
-        break;
-      }
-    }
-    return duration;
-  };
-
-  document.querySelectorAll('.brand img[src*="logo.gif"]').forEach(async logo => {
-    try {
-      const response = await fetch(logo.currentSrc);
-      const duration = getGifDuration(new Uint8Array(await response.arrayBuffer()));
-      if (duration) window.setTimeout(() => { logo.src = 'img/logo.svg'; }, duration);
-    } catch {
-      // GIF'en bevarer sin egen én-gangs-indstilling, hvis filen ikke kan læses.
-    }
   });
 
   // Den lodrette linje i navigationen følger sidens scroll-position.

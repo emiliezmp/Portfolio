@@ -11,11 +11,6 @@
 </head>
 <body class="no-js page-why">
 
-<video class="bg-video" autoplay muted loop playsinline>
-  <source src="img/why.mp4" type="video/mp4">
-</video>
-<div class="bg-scrim"></div>
-
 <!-- ============================================================
      IKONER — genbruges tre steder på siden. Farven arves fra
      currentColor, så de altid matcher --navy uden ekstra CSS.
@@ -57,25 +52,22 @@
       <path d="M4 7.5h3l1.4-2h7.2l1.4 2h3v11H4v-11Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
       <circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/>
     </symbol>
+    <symbol id="icon-bulb-def" viewBox="0 0 24 24">
+      <path d="M8.3 15.2c-1.5-1.1-2.5-2.9-2.5-5A6.2 6.2 0 0 1 12 4a6.2 6.2 0 0 1 6.2 6.2c0 2.1-1 3.9-2.5 5-.8.6-1.2 1.3-1.3 2.1H9.6c-.1-.8-.5-1.5-1.3-2.1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9.7 20h4.6M10 17.3h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      <path d="M12 1.5v1M3.8 5l.9.5M20.2 5l-.9.5M2 11h1.1M20.9 11H22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-location-def" viewBox="0 0 24 24">
+      <path d="M12 21s6-5.6 6-11A6 6 0 0 0 6 10c0 5.4 6 11 6 11Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="12" cy="10" r="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    </symbol>
+    <symbol id="icon-plane-def" viewBox="0 0 24 24">
+      <path d="m3 11 7.2 1.1L17.5 4c.7-.8 1.8-1.1 2.7-.5.9.6 1.1 1.8.5 2.7l-5.2 7.1 4.5 1.3-1.5 2-5.5-.2-3.4 4.1-1.7-.8 1.8-4.2-4.9-1.8L3 11Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
 
-    <!-- Trappe-ikon: bruges ved hver stedoverskrift (IED Barcelona m.fl.) -->
+    <!-- Trappe-ikon til "Finding my path" -->
     <symbol id="icon-stairs-def" viewBox="0 0 60 60">
-      <rect width="60" height="60" rx="6" fill="var(--navy)"/>
-      <path fill="var(--pink)" d="
-        M54,12
-        Q54,6 48,6
-        L44,6
-        Q38,6 38,12
-        L38,22
-        L28,22
-        Q22,22 22,28
-        L22,38
-        L12,38
-        Q6,38 6,44
-        L6,48
-        Q6,54 12,54
-        L54,54
-        Z"/>
+      <path d="M7 51h12V39h12V27h12V15h10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
 
   </defs>
@@ -84,9 +76,9 @@
 <div class="layout">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar sidebar--transparent">
+  <aside class="sidebar">
     <a href="index.html" class="brand" aria-label="Til forsiden">
-      <img src="img/logo.gif?v=once" alt="">
+      <img src="img/logo.gif?v=single" alt="">
     </a>
 
     <nav aria-label="Hovednavigation">
@@ -141,13 +133,19 @@
       <p class="case-subtitle">My journey into multimediadesign and the creative path that feels right for me.</p>
     </header>
 
+    <div class="why-video-box">
+      <video autoplay muted loop playsinline aria-label="Video fra Emilies hverdag">
+        <source src="img/why.mp4" type="video/mp4">
+      </video>
+    </div>
+
     <!-- ===================================================
          01 — STEP INSIDE
          =================================================== -->
     <section class="why-section why-intro">
       <div class="about-photo-card about-photo-card--pink">
-        <span class="icon-badge"><svg><use href="#icon-dots-def"></use></svg></span>
-        <h2 class="why-heading"><span>01</span>Step inside</h2>
+        <span class="icon-badge"><svg><use href="#icon-stairs-def"></use></svg></span>
+        <h2 class="why-heading"><span>01</span>Finding my path</h2>
 
         <p>At first, I thought about studying Design Technology, but since it's only located in Herning and Kolding, I decided against it, since I really enjoy living in Aarhus.</p>
 
@@ -157,115 +155,87 @@
       <img src="img/blueselfie.png" alt="Emilie smiling on a boat by the sea">
     </section>
 
-    <hr class="why-rule">
-
     <!-- ===================================================
          02 — STUDY TRIP
          =================================================== -->
-    <section class="why-section why-study-trip">
-      <div class="about-photo-card about-photo-card--pink why-header-row">
-        <div>
-          <span class="icon-badge icon-badge--study">
-            <span class="icon-star-arrow">
-              <svg class="icon-star-arrow__star"><use href="#icon-star-def"></use></svg>
-              <svg class="icon-star-arrow__arrow"><use href="#icon-arrow-def"></use></svg>
-            </span>
-          </span>
-          <h2 class="why-heading"><span>02</span>Study trip</h2>
-        </div>
+    <section class="why-section why-story-row">
+      <img src="img/web.jpeg" alt="Emilie arbejder med multimediedesign">
+
+      <div class="about-photo-card about-photo-card--pink">
+        <span class="icon-badge"><svg><use href="#icon-bulb-def"></use></svg></span>
+        <h2 class="why-heading"><span>02</span>What inspires me?</h2>
+        <p>I´m curious by nature and enjoy learning a little bit of everything. I love having variety in what I do and being able to switch between creative ideas, design and more practical tasks. That’s what keeps me motivated.</p>
+        <p>I also find a lot of inspiration outside my screen. Travelling, experiencing different cultures and discovering new places often gives me new perspectives and ideas that I bring into my creative work.</p>
+      </div>
+    </section>
+
+    <section class="why-section why-story-row">
+      <div class="about-photo-card about-photo-card--pink">
+        <span class="icon-badge"><svg><use href="#icon-plane-def"></use></svg></span>
+        <h2 class="why-heading"><span>03</span>Study trip</h2>
         <p>Below are some pictures from my trip to Barcelona with my school. Seven of us were from the online class, while the rest were from the in-person class.</p>
       </div>
 
-      <div class="why-photo-grid">
-        <figure>
-          <img src="img/stairs.jpeg" alt="Emilie on a staircase in Barcelona">
-          <figcaption>Watch out, Emilie is ready to create something for you.</figcaption>
-        </figure>
+      <img src="img/stairs.jpeg" alt="Emilie på en trappe i Barcelona">
+    </section>
+
+    <section class="why-section why-story-row">
+      <div class="why-story-image">
+        <img src="img/barcelona-cropped.png" alt="Klassen på besøg hos den kreative virksomhed Firma">
+      </div>
+
+      <div class="about-photo-card about-photo-card--pink">
+        <span class="icon-badge"><svg><use href="#icon-location-def"></use></svg></span>
+        <h2 class="why-heading"><span>04</span>Visits</h2>
+
+        <p>During our study trip, we visited a creative company, Firma and gained insight into how they develop ideas and create solutions for their clients.</p>
+
+        <p>We also visited two different schools: IED Barcelona, a design school offering a variety of creative disciplines, and TecnoCampus, where we explored media studios, technology and different approaches to digital learning.</p>
+      </div>
+    </section>
+
+    <section class="why-section why-study-trip">
+      <div class="why-scroll-gallery" aria-label="Flere billeder fra studieturen">
         <figure>
           <img src="img/sagrada.jpeg" alt="Sagrada Familia">
-          <figcaption>A visit to Sagrada Familia.</figcaption>
         </figure>
         <figure>
           <img src="img/pink.jpeg" alt="Decorated column near Casa Vicens">
-          <figcaption>Near Casa Vicens.</figcaption>
         </figure>
         <figure>
           <!-- Filnavn ukendt endnu — sæt det rigtige når billedet er i img-mappen -->
           <img src="img/rushlife.jpeg" alt="Window in the Gothic Quarter">
-          <figcaption>A run through Barcelona in the morning.</figcaption>
         </figure>
-      </div>
-
-      <img class="why-wide-photo" src="img/castle.jpeg" alt="Barcelona Cathedral seen from below">
-
-      <p class="why-lead">I enjoy learning a lot of different things, because I like having variety and the freedom to switch between tasks. For me, that's what keeps things exciting and motivating. And then it was really interesting in Barcelona, because they have so many beautiful design around. Definitely not last time there.</p>
-    </section>
-
-    <hr class="why-rule">
-
-    <!-- ===================================================
-         03 — VISITS
-         =================================================== -->
-    <section class="why-section why-visits">
-      <div class="about-photo-card">
-        <div class="why-photo-stack">
-          <img src="img/barcelona.png" alt="The class at the creative company Firma">
-          <img src="img/barcelona-2.png" alt="The class outside in Barcelona">
-        </div>
-      </div>
-
-      <div class="about-photo-card about-photo-card--pink">
-        <span class="icon-badge"><svg><use href="#icon-dots-def"></use></svg></span>
-        <h2 class="why-heading"><span>03</span>Visits</h2>
-
-        <p>During our study trip, we visited a creative company, Firma and gained insight into how they develop ideas and create solutions for their clients.</p>
-
-        <p>We also visited two different schools: IED Barcelona, a design school offering a variety of creative disciplines, and TecnoCampus, where we explored media studios, technology, and different approaches to digital learning.</p>
-      </div>
-    </section>
-
-    <!-- ===================================================
-         STEDERNE
-         =================================================== -->
-    <section class="why-place">
-      <div class="why-place-head">
-        <h3>IED Barcelona</h3>
-        <span class="icon-badge">
-          <svg class="visit-icon" aria-hidden="true"><use href="#icon-camera-def"></use></svg>
-        </span>
-      </div>
-      <div class="why-place-grid">
-        <img src="img/shoe.png" alt="Shoe made of dried flowers">
-        <img src="img/posters.jpeg" alt="Student posters on a wall">
-        <img class="why-fashion-image" src="img/fashion.png" alt="Garment on a mannequin">
-      </div>
-    </section>
-
-    <section class="why-place">
-      <div class="why-place-head">
-        <h3>TecnoCampus, Mataró</h3>
-        <span class="icon-badge">
-          <svg class="visit-icon" aria-hidden="true"><use href="#icon-camera-def"></use></svg>
-        </span>
-      </div>
-      <div class="why-place-grid">
-        <img src="img/calling.jpeg" alt="In the recording studio">
-        <img src="img/studio.png" alt="The class in the film studio">
-        <img src="img/screen.png" alt="Screening room with large display">
-      </div>
-    </section>
-
-    <section class="why-place">
-      <div class="why-place-head">
-        <h3>Firma</h3>
-        <span class="icon-badge">
-          <svg class="visit-icon" aria-hidden="true"><use href="#icon-camera-def"></use></svg>
-        </span>
-      </div>
-      <div class="why-place-grid">
-        <img src="img/firmapeop.png" alt="Inside the Firma office">
-        <img src="img/groupselfie.jpeg" alt="Selfie with the class on the stairs">
-        <img src="img/outsidefirma.png" alt="Reflection in the window outside Firma">
+        <figure>
+          <img src="img/castle.jpeg" alt="Barcelona Cathedral seen from below">
+        </figure>
+        <figure>
+          <img src="img/shoe.png" alt="Shoe made of dried flowers">
+        </figure>
+        <figure>
+          <img src="img/posters.jpeg" alt="Student posters on a wall">
+        </figure>
+        <figure>
+          <img class="why-fashion-image" src="img/fashion.png" alt="Garment on a mannequin">
+        </figure>
+        <figure>
+          <img src="img/calling.jpeg" alt="In the recording studio">
+        </figure>
+        <figure>
+          <img src="img/studio.png" alt="The class in the film studio">
+        </figure>
+        <figure>
+          <img src="img/screen.png" alt="Screening room with large display">
+        </figure>
+        <figure>
+          <img src="img/firmapeop.png" alt="Inside the Firma office">
+        </figure>
+        <figure>
+          <img src="img/groupselfie.jpeg" alt="Selfie with the class on the stairs">
+        </figure>
+        <figure>
+          <img src="img/outsidefirma.png" alt="Reflection in the window outside Firma">
+        </figure>
       </div>
     </section>
 
