@@ -810,6 +810,13 @@ a{color:inherit; text-decoration:none;}
   max-width:none;
 }
 
+.main--brandguide .case-brandguide-project-image{
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+}
+
 .case-full-image.case-persona-image{
   max-height:none;
   object-fit:contain;
@@ -825,7 +832,8 @@ a{color:inherit; text-decoration:none;}
   object-fit:contain;
 }
 
-.case-full-image.case-stay-mockup-image{
+.case-full-image.case-stay-mockup-image,
+.case-full-image.case-stay-post-image{
   max-height:none;
   object-fit:contain;
 }

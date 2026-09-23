@@ -797,6 +797,14 @@ a {
   max-width: none;
 }
 
+.main--brandguide .case-brandguide-project-image {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .case-full-image.case-persona-image {
   max-height: none;
   -o-object-fit: contain;
@@ -815,7 +823,8 @@ a {
      object-fit: contain;
 }
 
-.case-full-image.case-stay-mockup-image {
+.case-full-image.case-stay-mockup-image,
+.case-full-image.case-stay-post-image {
   max-height: none;
   -o-object-fit: contain;
      object-fit: contain;
