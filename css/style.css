@@ -189,6 +189,37 @@ a {
   outline: 2px solid var(--navy);
   outline-offset: 3px;
 }
+.sidebar .nav-group:first-child .nav-links {
+  counter-reset: work-item;
+  gap: 22px;
+}
+.sidebar .nav-group:first-child .nav-links li {
+  counter-increment: work-item;
+}
+.sidebar .nav-group:first-child .nav-links a {
+  display: grid;
+  grid-template-columns: 2ch 1fr;
+  gap: 10px;
+}
+.sidebar .nav-group:first-child .nav-links a::before {
+  content: counter(work-item, decimal-leading-zero);
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+}
+.sidebar .nav-group:first-child .nav-links .nav-project {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.sidebar .nav-group:first-child .nav-links .nav-project-name {
+  font-weight: 600;
+}
+.sidebar .nav-group:first-child .nav-links .nav-project-type {
+  margin-top: 2px;
+  font-size: 0.86rem;
+  font-weight: 400;
+  opacity: 0.72;
+}
 .sidebar .social-links {
   display: flex;
   gap: 12px;
@@ -391,7 +422,7 @@ a {
 }
 .gallery-item:hover .gallery-overlay-text .gallery-title, .gallery-item:focus-visible .gallery-overlay-text .gallery-title {
   font-weight: 700;
-  font-size: clamp(1.35rem, 2.1vw, 1.8rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.25rem);
 }
 .gallery-item .gallery-caption {
   position: absolute;
@@ -434,16 +465,30 @@ a {
 .gallery-year {
   font-family: "Lora", serif;
   font-style: italic;
-  font-size: 1rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
   letter-spacing: 0.02em;
   opacity: 0.9;
+}
+
+.gallery-number {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.5rem, 4.4vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
 }
 
 .gallery-title {
   font-family: "Playfair Display", serif;
   font-weight: 600;
-  font-size: clamp(1.2rem, 1.9vw, 1.6rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.25rem);
   line-height: 1.25;
+}
+
+.gallery-title--split {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
