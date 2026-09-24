@@ -785,11 +785,29 @@ a {
 .main--food .case-food-moodboard-box .case-double-grid {
   background: transparent;
   padding: 0;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.main--food .case-food-moodboard-box .case-double-grid img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .main--food .case-food-sketches-box .case-double-grid {
   background: transparent;
   padding: 0;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.main--food .case-food-sketches-box .case-double-grid img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .main--food .case-food-prototype-box .case-full-image {
@@ -1165,6 +1183,14 @@ a {
 .case-block) :is(.case-full-image, .case-medium-image, .case-double-grid, .case-triple-grid) {
   background: transparent;
   padding: 0;
+}
+
+.main--food .case-food-final-prototype-box > .case-subheading {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+.main--food .case-food-final-prototype-box > .case-subheading + :is(.case-triple-grid, .case-double-grid) {
+  margin-top: 6px;
 }
 
 @media (max-width: 700px) {

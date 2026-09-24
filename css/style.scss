@@ -800,11 +800,29 @@ a{color:inherit; text-decoration:none;}
 .main--food .case-food-moodboard-box .case-double-grid{
   background:transparent;
   padding:0;
+  grid-template-columns:1fr;
+  gap:20px;
+
+  img{
+    width:100%;
+    height:auto;
+    max-height:none;
+    object-fit:contain;
+  }
 }
 
 .main--food .case-food-sketches-box .case-double-grid{
   background:transparent;
   padding:0;
+  grid-template-columns:1fr;
+  gap:20px;
+
+  img{
+    width:100%;
+    height:auto;
+    max-height:none;
+    object-fit:contain;
+  }
 }
 
 .main--food .case-food-prototype-box .case-full-image{
@@ -1179,6 +1197,17 @@ a{color:inherit; text-decoration:none;}
   :is(.case-full-image, .case-medium-image, .case-double-grid, .case-triple-grid){
     background:transparent;
     padding:0;
+  }
+}
+
+.main--food .case-food-final-prototype-box{
+  > .case-subheading{
+    font-size:1.1rem;
+    line-height:1.7;
+  }
+
+  > .case-subheading + :is(.case-triple-grid, .case-double-grid){
+    margin-top:6px;
   }
 }
 
