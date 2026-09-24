@@ -876,12 +876,92 @@ a {
   max-width: none;
 }
 
+.main--brandguide .case-brandguide-purpose-box .case-block-text {
+  width: 100%;
+  max-width: none;
+}
+
 .main--brandguide .case-brandguide-project-image {
   width: 100%;
   height: auto;
   max-height: none;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.main--brandguide .case-slide-grid {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 20px) / 2);
+  gap: 20px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  padding-bottom: 16px;
+  scrollbar-color: var(--navy) transparent;
+}
+.main--brandguide .case-slide-grid img {
+  scroll-snap-align: start;
+}
+@media (max-width: 700px) {
+  .main--brandguide .case-slide-grid {
+    grid-template-columns: none;
+    grid-auto-columns: 88%;
+  }
+}
+
+.case-slide-scroller-wrap {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 28px;
+  margin-bottom: 56px;
+  border-radius: 6px;
+  background: var(--sky);
+}
+.case-slide-scroller-wrap > * {
+  margin: 0;
+}
+.case-slide-scroller-wrap > * + * {
+  margin-top: 14px;
+}
+.case-slide-scroller-wrap .case-block-text {
+  width: 100%;
+  max-width: none;
+}
+.case-slide-scroller-wrap .case-slide-scroller {
+  position: relative;
+  margin-top: 32px;
+}
+.case-slide-scroller-wrap .case-slide-grid {
+  margin-bottom: 0;
+}
+.case-slide-scroller-wrap .case-slide-scroller:hover .case-slide-scroller-hint,
+.case-slide-scroller-wrap .case-slide-scroller:focus-within .case-slide-scroller-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 700px) {
+  .case-slide-scroller-wrap {
+    padding: 20px;
+  }
+}
+
+.case-slide-scroller-hint {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--pink);
+  color: var(--navy);
+  font-family: "Lora", serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .case-full-image.case-persona-image {
