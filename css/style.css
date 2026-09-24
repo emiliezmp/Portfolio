@@ -1573,11 +1573,13 @@ a {
   .why-story-row .about-photo-card {
     padding: 24px;
   }
+}
+
+@media (max-width: 800px) {
   .why-intro .about-photo-card {
     padding: 24px;
   }
 }
-
 .why-heading {
   font-family: "Playfair Display", serif;
   font-weight: 600;
@@ -1672,14 +1674,14 @@ a {
   font-weight: 600;
   line-height: 1.5;
 }
-.why-scroll-gallery .why-fashion-image {
-  -o-object-position: 85% center;
-     object-position: 85% center;
-}
 @media (max-width: 700px) {
   .why-scroll-gallery {
     grid-auto-columns: 85%;
   }
+}
+.why-scroll-gallery .why-fashion-image {
+  -o-object-position: 85% center;
+     object-position: 85% center;
 }
 
 .why-study-trip {
@@ -1823,33 +1825,6 @@ a {
 
 .icon-dots circle {
   animation: none;
-}
-.icon-dots circle:nth-child(1) {
-  animation-delay: 0.06s;
-}
-.icon-dots circle:nth-child(2) {
-  animation-delay: 0.12s;
-}
-.icon-dots circle:nth-child(3) {
-  animation-delay: 0.18s;
-}
-.icon-dots circle:nth-child(4) {
-  animation-delay: 0.24s;
-}
-.icon-dots circle:nth-child(5) {
-  animation-delay: 0.3s;
-}
-.icon-dots circle:nth-child(6) {
-  animation-delay: 0.36s;
-}
-.icon-dots circle:nth-child(7) {
-  animation-delay: 0.42s;
-}
-.icon-dots circle:nth-child(8) {
-  animation-delay: 0.48s;
-}
-.icon-dots circle:nth-child(9) {
-  animation-delay: 0.54s;
 }
 
 .icon-star-arrow {
@@ -2097,4 +2072,4 @@ a {
 .thanks-button:focus-visible {
   outline: 2px solid var(--navy);
   outline-offset: 2px;
-}/*# sourceMappingURL=style.css.map */
+}

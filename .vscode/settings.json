@@ -1,0 +1,8 @@
+{
+  "liveServer.settings.ignoreFiles": [
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.map"
+  ],
+  "liveSassCompile.settings.generateMap": false
+}
