@@ -2197,3 +2197,140 @@ a {
   outline: 2px solid var(--navy);
   outline-offset: 2px;
 }
+
+body {
+  overflow-x: hidden;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+@media (max-width: 700px) {
+  .main {
+    min-width: 0;
+    padding: 24px 16px 64px;
+  }
+  .sidebar {
+    padding: 24px 18px 28px;
+  }
+  .sidebar .brand img,
+  .sidebar .brand-logo-still {
+    width: 132px;
+  }
+  .sidebar .menu-toggle {
+    top: 16px;
+    right: 14px;
+    width: 58px;
+    height: 54px;
+  }
+  .sidebar nav {
+    padding-top: 20px;
+  }
+  .sidebar .nav-group {
+    margin-bottom: 28px;
+  }
+  .case-header,
+  .about-header {
+    margin-bottom: 36px;
+  }
+  .case-header h1,
+  .about-header h1 {
+    overflow-wrap: anywhere;
+    font-size: clamp(1.8rem, 9vw, 2.25rem);
+  }
+  .case-subtitle,
+  .case-copy p,
+  .case-section p,
+  .case-block-text,
+  .who-story__text p,
+  .about-copy p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .main--case > :is(.case-peak-project-box,
+  .case-stay-project-box,
+  .case-hero-box,
+  .case-section,
+  .case-copy,
+  .case-block,
+  .case-slide-grid),
+  .case-slide-scroller-wrap {
+    padding: 18px;
+    margin-bottom: 36px;
+  }
+  .gallery {
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .gallery-item .gallery-overlay-text {
+    top: 22px;
+    left: 20px;
+    right: 20px;
+  }
+  .gallery-number,
+  .gallery-about-icon {
+    width: 2.45rem;
+    height: 2.45rem;
+    font-size: 2.45rem;
+  }
+  .gallery-title,
+  .gallery-item:hover .gallery-title,
+  .gallery-item:focus-visible .gallery-title {
+    font-size: clamp(1.35rem, 7vw, 1.8rem);
+  }
+  .case-related {
+    margin-top: 72px;
+  }
+  .who-story__row {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 16px;
+  }
+  .who-story__photo {
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+  .who-story__text {
+    min-height: 0;
+    padding: 20px;
+  }
+  .why-story-row {
+    gap: 16px;
+  }
+  .why-scroll-gallery {
+    grid-auto-columns: 84%;
+  }
+  .contact-form {
+    gap: 26px;
+  }
+  .form-submit button {
+    width: 100%;
+  }
+  .thanks-card {
+    width: 100%;
+    padding: 30px 22px;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .gallery-item .gallery-overlay {
+    opacity: 1;
+    background: linear-gradient(to bottom, rgba(23, 77, 132, 0.72), rgba(23, 77, 132, 0.24));
+  }
+  .gallery-item .gallery-overlay-text {
+    opacity: 1;
+    transform: none;
+    color: var(--pink);
+  }
+}
+@media (max-width: 380px) {
+  .gallery-item .gallery-overlay-text {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+  }
+  .gallery-title-tail {
+    white-space: normal;
+  }
+}
