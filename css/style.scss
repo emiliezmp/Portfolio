@@ -243,6 +243,24 @@ a{color:inherit; text-decoration:none;}
     }
   }
 
+  .nav-icon-link{
+    display:grid !important;
+    grid-template-columns:2ch 1fr;
+    gap:10px;
+    align-items:center;
+
+    svg{
+      display:block;
+      width:17.1px;
+      height:17.1px;
+      stroke-width:2;
+    }
+
+    span{
+      font-weight:600;
+    }
+  }
+
   .social-links{
     display:flex;
     gap:12px;
@@ -462,21 +480,27 @@ a{color:inherit; text-decoration:none;}
 }
 
 // Forsidens Peak-kort: laptop og hjemmeside er motivet, ikke personen.
-#peak-identity img{
+#peak-identity img,
+.gallery-item[href="Peak.html"] img{
   transform:scale(1.48);
   transform-origin:left 43%;
 }
 
 #peak-identity:hover img,
-#peak-identity:focus-visible img{
+#peak-identity:focus-visible img,
+.gallery-item[href="Peak.html"]:hover img,
+.gallery-item[href="Peak.html"]:focus-visible img{
   transform:scale(1.53);
 }
 
 @media (max-width: 560px){
-  #peak-identity img{ transform:scale(1.36); }
+  #peak-identity img,
+  .gallery-item[href="Peak.html"] img{ transform:scale(1.36); }
 
   #peak-identity:hover img,
-  #peak-identity:focus-visible img{ transform:scale(1.41); }
+  #peak-identity:focus-visible img,
+  .gallery-item[href="Peak.html"]:hover img,
+  .gallery-item[href="Peak.html"]:focus-visible img{ transform:scale(1.41); }
 }
 
 .gallery-year{
@@ -495,11 +519,30 @@ a{color:inherit; text-decoration:none;}
   margin-bottom:4px;
 }
 
+.gallery-about-icon{
+  display:block;
+  width:clamp(2.5rem, 4.4vw, 3.8rem);
+  height:clamp(2.5rem, 4.4vw, 3.8rem);
+  margin-bottom:10px;
+
+  svg{
+    display:block;
+    width:100%;
+    height:100%;
+    transform:scale(1.12);
+    transform-origin:center;
+  }
+}
+
 .gallery-title{
   font-family:'Playfair Display', serif;
   font-weight:600;
   font-size:clamp(1.6rem, 2.6vw, 2.25rem);
   line-height:1.25;
+}
+
+.gallery-title-tail{
+  white-space:nowrap;
 }
 
 .gallery-title--split{
@@ -954,11 +997,13 @@ a{color:inherit; text-decoration:none;}
 
 .case-slide-scroller-hint{
   display:block;
-  margin-bottom:10px;
+  margin-top:10px;
   color:var(--navy);
   font-family:'Lora', serif;
   font-size:0.95rem;
-  font-style:italic;
+  font-style:normal;
+  font-weight:400;
+  line-height:1.7;
   text-align:right;
 }
 
