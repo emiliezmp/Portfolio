@@ -163,7 +163,7 @@ a {
 }
 .sidebar .nav-label::before {
   content: "♥";
-  color: var(--navy);
+  color: var(--pink);
   font-size: 0.75em;
   margin-right: 8px;
   vertical-align: 0.05em;
