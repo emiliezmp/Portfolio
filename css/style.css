@@ -260,12 +260,6 @@ a {
   outline: 2px solid var(--navy);
   outline-offset: 2px;
 }
-.sidebar .sidebar-footer {
-  margin-top: auto;
-  padding-top: 24px;
-  font-size: 0.85rem;
-  color: rgba(23, 77, 132, 0.6);
-}
 
 @keyframes logo-reveal {
   from {
@@ -277,6 +271,13 @@ a {
     transform: translateY(0) scale(1);
   }
 }
+.site-footer {
+  margin-top: 48px;
+  font-size: 0.85rem;
+  color: rgba(23, 77, 132, 0.6);
+  text-align: center;
+}
+
 .main {
   padding: 48px 56px 96px;
 }
@@ -518,6 +519,13 @@ a {
   font-weight: 600;
   font-size: clamp(1.6rem, 2.6vw, 2.25rem);
   line-height: 1.25;
+}
+
+.gallery-arrow {
+  width: 0.8em;
+  height: 0.8em;
+  vertical-align: baseline;
+  color: var(--pink);
 }
 
 .gallery-title-tail {
@@ -1349,10 +1357,26 @@ a {
 }
 @media (max-width: 700px) {
   .gallery--related {
-    grid-template-columns: 1fr;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 88%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    padding: 5px 5px 14px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--navy) transparent;
+  }
+  .gallery--related .gallery-item {
+    scroll-snap-align: start;
   }
 }
 
+@media (max-width: 700px) {
+  .main--case {
+    min-width: 0;
+  }
+}
 .main--contact {
   display: flex;
   flex-direction: column;
@@ -2210,10 +2234,11 @@ video {
 @media (max-width: 700px) {
   .main {
     min-width: 0;
-    padding: 24px 16px 64px;
+    padding: 0 16px 64px;
+    margin-top: -8px;
   }
   .sidebar {
-    padding: 24px 18px 28px;
+    padding: 24px 18px 0;
   }
   .sidebar .brand img,
   .sidebar .brand-logo-still {
