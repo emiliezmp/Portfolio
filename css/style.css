@@ -272,7 +272,9 @@ a {
   }
 }
 .site-footer {
-  margin-top: 48px;
+  width: 100%;
+  flex-shrink: 0;
+  margin: 48px auto 0;
   font-size: 0.85rem;
   color: rgba(23, 77, 132, 0.6);
   text-align: center;
@@ -2175,6 +2177,7 @@ a {
 
 .main--thanks {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 80vh;
