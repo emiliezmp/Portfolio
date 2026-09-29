@@ -61,19 +61,17 @@ a{color:inherit; text-decoration:none;}
   &__heart{
     position:absolute;
     color:var(--pink);
-    font-size:3.7rem;
-    line-height:1;
-    transform:scaleX(1.18);
+    width:64px;
+    height:56px;
+    max-width:none;
     filter:drop-shadow(0 3px 5px rgba(23,77,132,0.2));
   }
 
   &__arrow{
     position:relative;
     color:var(--navy);
-    font-family:'Lora', serif;
-    font-size:1.7rem;
-    font-weight:800;
-    line-height:1;
+    width:24px;
+    height:28px;
   }
 
   &.is-visible:hover,
