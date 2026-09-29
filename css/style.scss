@@ -642,6 +642,18 @@ a{color:inherit; text-decoration:none;}
     height:auto;
     display:block;
   }
+
+  @media (max-width: 700px){
+    width:100%;
+    min-width:0;
+    overflow:visible;
+    border-radius:0;
+
+    img{
+      aspect-ratio:1366 / 713;
+      object-fit:contain;
+    }
+  }
 }
 
 // ---------- CASE STUDY (Peak.html + fremtidige projekt-sider) ----------

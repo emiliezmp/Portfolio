@@ -617,6 +617,18 @@ a {
   height: auto;
   display: block;
 }
+@media (max-width: 700px) {
+  .hero--image {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+    border-radius: 0;
+  }
+  .hero--image img {
+    aspect-ratio: 1366 / 713;
+    object-fit: contain;
+  }
+}
 
 .main--case {
   max-width: 1180px;
