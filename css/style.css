@@ -235,8 +235,9 @@ a {
 }
 .sidebar .social-links {
   display: flex;
+  justify-content: center;
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 36px;
 }
 .sidebar .social-icon {
   width: 40px;
@@ -623,8 +624,9 @@ a {
     border-radius: 0;
   }
   .hero--image img {
-    aspect-ratio: 1366 / 713;
-    object-fit: contain;
+    aspect-ratio: 1366/713;
+    -o-object-fit: contain;
+       object-fit: contain;
   }
 }
 
