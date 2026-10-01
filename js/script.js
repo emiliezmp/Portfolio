@@ -1,6 +1,68 @@
 // Fælles navigation og rolig billedanimation på alle sider.
 
+// Projektkortenes indhold: ét objekt pr. projekt.
+const projects = [
+  {
+    id: 'peak-identity', number: '01', title: 'Peak Digital', category: 'Brand Identity',
+    href: 'Peak.html', image: 'img/peak-laptop-opt.webp',
+    alt: 'Peak Digital — Brand Identity, vist på laptop'
+  },
+  {
+    id: 'peak-guide', number: '02', title: 'Peak Digital', category: 'Brand Guide',
+    href: 'brandguide.html', image: 'img/brandguide-tablet.webp',
+    alt: 'Peak Digital — Brand Guide, vist på tablet'
+  },
+  {
+    id: 'staycation', number: '03', title: 'Ud i det fri', category: 'UX/UI',
+    href: 'stay.html', image: 'img/staycation-phone.webp',
+    alt: 'Ud i det fri hjemmeside, vist på telefon'
+  },
+  {
+    id: 'farmors', number: '04', title: 'Farmors Food', category: 'UX & Storytelling',
+    href: 'food.html', image: 'img/farmors-laptop.webp',
+    alt: 'Farmors Food hjemmeside, vist på laptop'
+  }
+];
+
+// .map() laver hvert objekt om til HTML, og .join('') samler kortene.
+// Et link omkring hele kortet giver både klik og tastaturnavigation.
+function renderProjects(projects) {
+  return projects.map(project => `
+    <a class="gallery-item" href="${project.href}" id="${project.id}" data-project="${project.id}">
+      <img src="${project.image}" alt="${project.alt}" loading="lazy" decoding="async">
+      <span class="gallery-overlay"></span>
+      <span class="gallery-overlay-text">
+        <span class="gallery-number">${project.number}</span>
+        <span class="gallery-title gallery-title--split">
+          <span>${project.title}</span>
+          <span>${project.category} <svg class="gallery-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </span>
+    </a>
+  `).join('');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Hver side vælger projekter og rækkefølge med data-projects.
+  // Kortene oprettes før billedanimationerne sættes op.
+  document.querySelectorAll('template[data-projects]').forEach(placeholder => {
+    const selectedProjects = placeholder.dataset.projects.split(' ')
+      .map(id => projects.find(project => project.id === id))
+      .filter(Boolean);
+    placeholder.outerHTML = renderProjects(selectedProjects);
+  });
+
+  // Registrér klik på projektkortet, også når man klikker på billedet eller teksten.
+  document.querySelectorAll('.gallery').forEach(gallery => {
+    gallery.addEventListener('click', event => {
+      const card = event.target.closest('a[data-project]');
+      if (!card) return;
+      const project = projects.find(project => project.id === card.dataset.project);
+      console.log('Projekt valgt:', project.title, project.category);
+      // Linkets href åbner projektsiden som normalt.
+    });
+  });
+
   // Beviser at JavaScript rent faktisk kører — fjerner sikkerhedsnettet fra CSS'en
   document.body.classList.remove('no-js');
 
@@ -101,22 +163,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!image.closest('.hero') && !image.hasAttribute('loading')) image.loading = 'lazy';
   });
 
-  // Billeder er synlige som standard, også uden JavaScript.
+  // Billeder og overskrifter er synlige som standard, også uden JavaScript.
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
 
+  // En kort, begrænset forskydning giver også flow mellem billeder,
+  // som bliver færdigindlæst i forskellige observer-kald.
+  let nextRevealAt = 0;
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const image = entry.target;
-      image.classList.remove('image-reveal-pending');
-      image.classList.add('image-reveal-enter');
-      image.addEventListener('animationend', () => {
-        image.classList.remove('image-reveal-enter');
+    entries.filter(entry => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+        || a.boundingClientRect.left - b.boundingClientRect.left)
+      .forEach(entry => {
+      const element = entry.target;
+      const revealType = element.tagName === 'IMG' ? 'image' : 'heading';
+      const now = performance.now();
+      const delay = Math.min(Math.max(nextRevealAt - now, 0), 420);
+      nextRevealAt = now + delay + 140;
+      element.style.setProperty('--image-reveal-delay', `${delay}ms`);
+      element.classList.remove(`${revealType}-reveal-pending`);
+      element.classList.add(`${revealType}-reveal-enter`);
+      element.addEventListener('animationend', () => {
+        element.classList.remove(`${revealType}-reveal-enter`);
+        element.style.removeProperty('--image-reveal-delay');
       }, { once: true });
-      observer.unobserve(image);
+      observer.unobserve(element);
     });
   }, { threshold: 0, rootMargin: '0px' });
+
+  document.querySelectorAll('main h1, main h2, main h3, main h4, main h5, main h6').forEach(heading => {
+    heading.classList.add('heading-reveal-pending');
+    observer.observe(heading);
+  });
 
   document.querySelectorAll('img').forEach(image => {
     const prepareReveal = () => {
@@ -131,8 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
   reducedMotion.addEventListener('change', event => {
     if (!event.matches) return;
     observer.disconnect();
-    document.querySelectorAll('.image-reveal-pending, .image-reveal-enter').forEach(image => {
-      image.classList.remove('image-reveal-pending', 'image-reveal-enter');
+    document.querySelectorAll('.image-reveal-pending, .image-reveal-enter, .heading-reveal-pending, .heading-reveal-enter').forEach(element => {
+      element.classList.remove('image-reveal-pending', 'image-reveal-enter', 'heading-reveal-pending', 'heading-reveal-enter');
+      element.style.removeProperty('--image-reveal-delay');
     });
   });
 });
