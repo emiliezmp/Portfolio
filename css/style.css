@@ -1054,7 +1054,7 @@ a {
 .case-header {
   text-align: left;
   padding-top: 0;
-  margin-bottom: 56px;
+  margin-bottom: 28px;
 }
 .case-header h1 {
   font-family: "Playfair Display", serif;
@@ -1189,13 +1189,6 @@ a {
   border-radius: 4px;
   display: block;
   box-shadow: 0 1px 3px rgba(23, 77, 132, 0.15);
-  opacity: 0;
-  transform: translateY(28px) scale(0.94);
-  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.case-slide-grid img.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
 }
 @media (max-width: 700px) {
   .case-slide-grid {
@@ -1508,7 +1501,7 @@ a {
 .about-header {
   text-align: left;
   padding-top: 0;
-  margin-bottom: 56px;
+  margin-bottom: 28px;
 }
 .about-header h1 {
   font-family: "Playfair Display", serif;
@@ -2274,7 +2267,7 @@ video {
   }
   .case-header,
   .about-header {
-    margin-bottom: 36px;
+    margin-bottom: 20px;
   }
   .case-header h1,
   .about-header h1 {
@@ -2373,5 +2366,28 @@ video {
   }
   .gallery-title-tail {
     white-space: normal;
+  }
+}
+
+/* Separate movement properties preserve the gallery's hover transforms. */
+@media (prefers-reduced-motion: no-preference) {
+  img.image-reveal-pending {
+    opacity: 0;
+  }
+  img.image-reveal-enter {
+    animation: image-reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes image-reveal {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+    scale: 0.97;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
   }
 }

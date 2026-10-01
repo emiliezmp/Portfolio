@@ -1,4 +1,4 @@
-// Pop-up reveal for billeder i .case-slide-grid (brandguide.html m.fl.).
+// Fælles navigation og rolig billedanimation på alle sider.
 
 document.addEventListener('DOMContentLoaded', () => {
   // Beviser at JavaScript rent faktisk kører — fjerner sikkerhedsnettet fra CSS'en
@@ -101,29 +101,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!image.closest('.hero') && !image.hasAttribute('loading')) image.loading = 'lazy';
   });
 
-  const caseImages = document.querySelectorAll('.case-slide-grid img');
-  if (!caseImages.length) return;
+  // Billeder er synlige som standard, også uden JavaScript.
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const image = entry.target;
+      image.classList.remove('image-reveal-pending');
+      image.classList.add('image-reveal-enter');
+      image.addEventListener('animationend', () => {
+        image.classList.remove('image-reveal-enter');
+      }, { once: true });
+      observer.unobserve(image);
+    });
+  }, { threshold: 0, rootMargin: '0px' });
 
-    caseImages.forEach(img => observer.observe(img));
-  } else {
-    // Fallback: hvis IntersectionObserver ikke understøttes, vis billederne med det samme
-    caseImages.forEach(img => img.classList.add('is-visible'));
-  }
+  document.querySelectorAll('img').forEach(image => {
+    const prepareReveal = () => {
+      if (reducedMotion.matches || !image.naturalWidth) return;
+      image.classList.add('image-reveal-pending');
+      observer.observe(image);
+    };
+    if (image.complete) prepareReveal();
+    else image.addEventListener('load', prepareReveal, { once: true });
+  });
 
-  // Ekstra sikkerhedsnet: hvis et billede af en eller anden grund aldrig
-  // udløser observeren (fx meget kort side), vis det alligevel efter 3 sekunder
-  setTimeout(() => {
-    document.querySelectorAll('.case-slide-grid img:not(.is-visible)')
-      .forEach(img => img.classList.add('is-visible'));
-  }, 3000);
+  reducedMotion.addEventListener('change', event => {
+    if (!event.matches) return;
+    observer.disconnect();
+    document.querySelectorAll('.image-reveal-pending, .image-reveal-enter').forEach(image => {
+      image.classList.remove('image-reveal-pending', 'image-reveal-enter');
+    });
+  });
 });
