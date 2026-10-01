@@ -180,7 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const now = performance.now();
       const delay = Math.min(Math.max(nextRevealAt - now, 0), 420);
       nextRevealAt = now + delay + 140;
-      element.style.setProperty('--image-reveal-delay', `${delay}ms`);
+      const subtitleDelay = element.matches('.contact-marquee') ? 900
+        : element.matches('.case-subtitle') ? 350 : 0;
+      element.style.setProperty('--image-reveal-delay', `${delay + subtitleDelay}ms`);
       element.classList.remove(`${revealType}-reveal-pending`);
       element.classList.add(`${revealType}-reveal-enter`);
       element.addEventListener('animationend', () => {
@@ -191,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0, rootMargin: '0px' });
 
-  document.querySelectorAll('main h1, main h2, main h3, main h4, main h5, main h6').forEach(heading => {
+  document.querySelectorAll('main h1, main h2, main h3, main h4, main h5, main h6, main .case-subtitle, main .contact-marquee').forEach(heading => {
     heading.classList.add('heading-reveal-pending');
     observer.observe(heading);
   });

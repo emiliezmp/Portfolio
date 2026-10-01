@@ -160,7 +160,7 @@ a {
   border-bottom: 1px solid rgba(23, 77, 132, 0.35);
 }
 .sidebar .nav-label::before {
-  content: "\2665\FE0E";
+  content: "♥︎";
   color: var(--pink);
   font-size: 0.75em;
   margin-right: 8px;
@@ -323,7 +323,7 @@ a {
     cursor: pointer;
   }
   .sidebar .menu-toggle::before {
-    content: "\2665\FE0E";
+    content: "♥︎";
     position: absolute;
     inset: 50% auto auto 50%;
     color: var(--pink);
@@ -1414,6 +1414,39 @@ a {
   font-style: italic;
 }
 
+.contact-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+.contact-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: contact-marquee-scroll 24s linear infinite reverse;
+}
+.contact-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2rem;
+  padding-right: 2rem;
+  white-space: nowrap;
+}
+.contact-marquee-group > strong::after {
+  content: "♥︎";
+  color: var(--pink);
+  font-family: "Lora", serif;
+  font-size: 0.75em;
+  margin-left: 2rem;
+  vertical-align: 0.05em;
+}
+@keyframes contact-marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-marquee-track { animation: none; }
+  .contact-marquee-group > strong:not(:first-child),
+  .contact-marquee-group + .contact-marquee-group { display: none; }
+}
+
 .contact-form {
   width: 100%;
   max-width: 900px;
@@ -2368,8 +2401,6 @@ video {
     white-space: normal;
   }
 }
-
-/* Separate movement properties preserve the gallery's hover transforms. */
 @media (prefers-reduced-motion: no-preference) {
   img.image-reveal-pending,
   .heading-reveal-pending {
@@ -2384,12 +2415,16 @@ video {
     animation-delay: var(--image-reveal-delay, 0ms);
   }
 }
-
 @keyframes heading-reveal {
-  from { opacity: 0; translate: 0 10px; }
-  to { opacity: 1; translate: 0 0; }
+  from {
+    opacity: 0;
+    translate: 0 10px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
-
 @keyframes image-reveal {
   from {
     opacity: 0;
