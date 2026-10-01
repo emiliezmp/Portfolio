@@ -100,7 +100,7 @@ a {
 }
 .layout {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 300px minmax(0, 1fr);
   min-height: 100vh;
 }
 
@@ -160,7 +160,7 @@ a {
   border-bottom: 1px solid rgba(23, 77, 132, 0.35);
 }
 .sidebar .nav-label::before {
-  content: "♥";
+  content: "\2665\FE0E";
   color: var(--pink);
   font-size: 0.75em;
   margin-right: 8px;
@@ -280,6 +280,7 @@ a {
 }
 
 .main {
+  min-width: 0;
   padding: 48px 56px 96px;
 }
 
@@ -293,7 +294,7 @@ a {
 
 @media (max-width: 900px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .back-to-top--contact-mobile {
     display: flex;
@@ -322,15 +323,15 @@ a {
     cursor: pointer;
   }
   .sidebar .menu-toggle::before {
-    content: "♥";
+    content: "\2665\FE0E";
     position: absolute;
     inset: 50% auto auto 50%;
     color: var(--pink);
     font-family: "Lora", serif;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 4rem;
     line-height: 1;
-    transform: translate(-50%, -50%) scaleX(1.18);
+    transform: translate(-50%, -50%);
     transition: color 0.2s ease;
   }
   .sidebar .menu-toggle span {
