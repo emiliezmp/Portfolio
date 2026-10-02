@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuButton.setAttribute('aria-label', 'Åbn menu');
     menuButton.setAttribute('aria-expanded', 'false');
     menuButton.setAttribute('aria-controls', 'site-navigation');
-    menuButton.innerHTML = '<span></span><span></span><span></span>';
+    menuButton.innerHTML = '<span></span><span></span><span></span><svg class="menu-toggle__heart" viewBox="0 0 64 56" aria-hidden="true" focusable="false"><path fill="currentColor" d="M32 53C27 48 3 31 3 17C3 1 23-3 32 12C41-3 61 1 61 17C61 31 37 48 32 53Z"/></svg>';
     navigation.id = 'site-navigation';
     brand.insertAdjacentElement('afterend', menuButton);
     const mobileMenu = window.matchMedia('(max-width: 900px)');

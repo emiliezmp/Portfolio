@@ -322,15 +322,12 @@ a {
     gap: 5px;
     cursor: pointer;
   }
-  .sidebar .menu-toggle::before {
-    content: "♥︎";
+  .sidebar .menu-toggle__heart {
     position: absolute;
     inset: 50% auto auto 50%;
+    width: 64px;
+    height: 56px;
     color: var(--pink);
-    font-family: "Lora", serif;
-    font-weight: 700;
-    font-size: 4rem;
-    line-height: 1;
     transform: translate(-50%, -50%);
     transition: color 0.2s ease;
   }
@@ -345,7 +342,7 @@ a {
     background: var(--navy);
     transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
   }
-  .sidebar .menu-toggle:hover::before, .sidebar .menu-toggle:focus-visible::before {
+  .sidebar .menu-toggle:hover .menu-toggle__heart, .sidebar .menu-toggle:focus-visible .menu-toggle__heart {
     color: var(--navy);
   }
   .sidebar .menu-toggle:hover span, .sidebar .menu-toggle:focus-visible span {
@@ -361,7 +358,7 @@ a {
   .sidebar.is-menu-open .menu-toggle span:nth-child(2) {
     opacity: 0;
   }
-  .sidebar.is-menu-open .menu-toggle span:last-child {
+  .sidebar.is-menu-open .menu-toggle span:last-of-type {
     transform: translateY(-7px) rotate(-45deg);
   }
   .sidebar nav {
@@ -621,11 +618,12 @@ a {
   .hero--image {
     width: 100%;
     min-width: 0;
-    overflow: visible;
-    border-radius: 0;
+    overflow: hidden;
+    border-radius: 6px;
   }
   .hero--image img {
-    aspect-ratio: 1366/713;
+    height: auto;
+    aspect-ratio: auto;
     -o-object-fit: contain;
        object-fit: contain;
   }
@@ -2278,6 +2276,9 @@ video {
     min-width: 0;
     padding: 0 16px 64px;
     margin-top: -8px;
+  }
+  .main--home {
+    margin-top: 0;
   }
   .sidebar {
     padding: 24px 18px 0;
