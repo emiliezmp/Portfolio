@@ -667,7 +667,7 @@ a {
      object-fit: cover;
   -o-object-position: center 62%;
      object-position: center 62%;
-  transform: scale(1.35);
+  transform: scale(1.8);
   transform-origin: center 62%;
 }
 
@@ -1728,6 +1728,24 @@ a {
   gap: 24px;
   align-items: stretch;
 }
+.why-opening {
+  display: contents;
+}
+@media (max-width: 700px) {
+  .why-opening {
+    display: grid;
+    grid-auto-rows: 640px;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .why-opening > section {
+    display: contents;
+  }
+  .why-opening .why-intro > .about-photo-card { order: 1; }
+  .why-opening .why-mobile-after-path { order: 4; }
+  .why-opening .why-inspiration > .about-photo-card { order: 3; }
+  .why-opening .why-mobile-after-inspiration { order: 2; }
+}
 .why-story-row > img {
   display: block;
   width: 100%;
@@ -2166,12 +2184,28 @@ a {
 }
 
 @media (max-width: 700px) {
-  .who-story__row {
-    grid-template-columns: 1fr;
+  .who-story {
+    gap: 16px;
+    grid-template-rows: auto;
     grid-auto-rows: 640px;
   }
+  .who-story__hero { order: 1; }
+  .who-story__text--intro { order: 2; }
+  .who-story__photo[src="img/setup.webp"] { order: 3; }
+  .who-story__photo[src="img/who-bluerun.webp"] { order: 4; }
+  .who-story__text--beyond { order: 5; }
+  .who-story__photo[src="img/who-run.webp"] { order: 6; }
+  .who-story__photo[src="img/who-girlsrun.webp"] { order: 7; }
+  .who-story__text--explore { order: 8; }
+  .who-story__photo[src="img/who-swim.webp"] { order: 9; }
+  .who-story__photo[src="img/who-mountain.webp"] { order: 10; }
+  .who-story__photo[src="img/who-cross.webp"] { order: 11; }
+  .who-story__row {
+    display: contents;
+  }
   .who-story__text {
-    padding: 24px;
+    justify-content: center;
+    padding: 24px 24px 48px;
   }
 }
 .pop-reveal {
@@ -2356,13 +2390,18 @@ video {
     grid-auto-rows: auto;
     gap: 16px;
   }
+  .who-story__hero,
   .who-story__photo {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .who-story__hero {
     height: auto;
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/9;
   }
   .who-story__text {
     min-height: 0;
-    padding: 20px;
+    padding: 24px 24px 48px;
   }
   .why-story-row {
     gap: 16px;
