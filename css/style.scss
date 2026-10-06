@@ -579,6 +579,118 @@ a {
   transform-origin: center 62%;
 }
 
+.peak-welcome-animation {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 6px;
+}
+.peak-brand-assets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+}
+.peak-brand-assets__search {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 6px;
+}
+@media (max-width: 700px) {
+  .peak-brand-assets {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+.business-card {
+  width: 100%;
+  min-width: 0;
+  perspective: 1400px;
+}
+.peak-brand-assets__social {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.peak-brand-assets__stack {
+  display: grid;
+  aspect-ratio: 4 / 5;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  row-gap: 8.571428%;
+  min-width: 0;
+}
+.peak-brand-assets__help {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+}
+@media (max-width: 700px) {
+  .peak-brand-assets__stack {
+    aspect-ratio: auto;
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+  .peak-brand-assets__help {
+    height: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .peak-brand-assets__stack {
+    aspect-ratio: auto;
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+}
+.business-card__turn {
+  position: relative;
+  aspect-ratio: 7 / 4;
+  transform-style: preserve-3d;
+  animation: business-card-flip 10s ease-in-out infinite;
+}
+.business-card__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.business-card__face--back {
+  transform: rotateY(180deg);
+}
+.business-card__face img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@keyframes business-card-flip {
+  0%, 35% { transform: rotateY(0deg); }
+  45%, 85% { transform: rotateY(180deg); }
+  95%, 100% { transform: rotateY(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .business-card__turn {
+    animation: none;
+    aspect-ratio: auto;
+    display: grid;
+    gap: 16px;
+  }
+  .business-card__face {
+    position: static;
+  }
+  .business-card__face--back {
+    transform: none;
+  }
+}
+
 .case-full-image.case-peak-project-image {
   display: block;
   width: 100%;
