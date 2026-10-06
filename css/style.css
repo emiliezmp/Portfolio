@@ -4,7 +4,6 @@
   --pink: #FFF0F9;
   --navy: #174D84;
   --sky: #ebe7e4;
-  --ink: #12314f;
 }
 
 * {
@@ -1892,11 +1891,6 @@ video {
   }
   .case-related {
     margin-top: 72px;
-  }
-  .who-story__row {
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-    gap: 16px;
   }
   .who-story__hero,
   .who-story__photo {
