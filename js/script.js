@@ -19,7 +19,7 @@ const projects = [
   },
   {
     id: 'farmors', number: '04', title: 'Farmors Food', category: 'UX & Storytelling',
-    href: 'food.html', image: 'img/farmors-laptop.webp',
+    href: 'food.html', image: 'img/fooddesktop.webp',
     alt: 'Farmors Food website displayed on a laptop'
   }
 ];
