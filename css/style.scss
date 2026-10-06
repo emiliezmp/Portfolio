@@ -1,9 +1,9 @@
 // ============================================================
 // Portfolio — Emilie Zadstrow Mørch Pedersen
-// Én samlet SCSS-fil, compiles til style.css via Live Sass Compiler
+// Single SCSS file compiled to style.css using Live Sass Compiler.
 // ============================================================
 
-// ---------- FARVEPALETTE ----------
+// ---------- COLOR PALETTE ----------
 $blue-grey: #CBD4DC;
 $pink:      #FFF0F9;
 $navy:      #174D84;
@@ -89,7 +89,7 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// Kontaktformularen har kun brug for genvejen på små skærme.
+// The contact form only needs the shortcut on small screens.
 .back-to-top--contact-mobile{
   display:none;
 }
@@ -101,7 +101,7 @@ a{color:inherit; text-decoration:none;}
   .sidebar .brand img[src$="logo.svg"]{ animation:none; }
 }
 
-// ---------- LAYOUT + SIDEBAR (alle sider) ----------
+// ---------- LAYOUT + SIDEBAR (all pages) ----------
 .layout{
   display:grid;
   grid-template-columns: 300px minmax(0, 1fr);
@@ -387,7 +387,7 @@ a{color:inherit; text-decoration:none;}
   .sidebar::after{ display:none; }
 }
 
-// ---------- GALLERI-TILES (index.html + Peak.html m.fl.) ----------
+// ---------- GALLERY TILES (index.html, Peak.html and other pages) ----------
 .gallery{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -482,7 +482,7 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// Forsidens Peak-kort: laptop og hjemmeside er motivet, ikke personen.
+// Homepage Peak card: focus the image on the laptop and website.
 #peak-identity img,
 .gallery-item[href="Peak.html"] img{
   transform:scale(1.48);
@@ -631,7 +631,7 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// Forside-hero som ét samlet designet billede (portfolio.png) i stedet for tekst
+// Homepage hero displayed as a single designed image.
 .hero--image{
   padding:0;
   overflow:hidden;
@@ -656,13 +656,13 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// ---------- CASE STUDY (Peak.html + fremtidige projekt-sider) ----------
+// ---------- CASE STUDY (Peak.html and future project pages) ----------
 .main--case{
   max-width:1180px;
   margin:0 auto;
 }
 
-// Brand identity for Peak Digital — mere plads til projektets billeder
+// Peak Digital brand identity: extra space for project images.
 .main--peak{
   .case-subtitle{
     font-style:italic;
@@ -910,7 +910,7 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// Lyserøde billedrammer på de øvrige projektsider.
+// Pink image frames on the other project pages.
 .main--case:not(.main--food){
   .case-full-image,
   .case-medium-image,
@@ -1056,7 +1056,7 @@ a{color:inherit; text-decoration:none;}
   border-radius:6px;
 }
 
-// Bredere variant til sider med store slides/skærmbilleder (fx Brandguide.html)
+// Wider layout for pages with large slides or screenshots.
 .main--case-wide{
   max-width:1180px;
   margin:0 auto;
@@ -1076,7 +1076,7 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// Sektionsoverskrifter (MOODBOARD, LOGO, STYLETILES & WIREFRAMES)
+// Section headings (MOODBOARD, LOGO, STYLE TILES & WIREFRAMES).
 .case-eyebrow{
   display:block;
   text-align:left;
@@ -1098,7 +1098,7 @@ a{color:inherit; text-decoration:none;}
   color:rgba(23,77,132,0.85);
 }
 
-// Introduktionstekst
+// Introductory text.
 .case-copy{
   display:flex;
   flex-direction:column;
@@ -1116,7 +1116,7 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// Brødtekst i sektioner — venstrestillet
+// Left-aligned body text in sections.
 .case-section{
   margin-bottom:28px;
 
@@ -1192,7 +1192,7 @@ a{color:inherit; text-decoration:none;}
   margin-bottom:8px;
 }
 
-// Slide-grid til InDesign-eksporterede brandguide-sider (brandguide.html m.fl.)
+// Slide grid for brand guide pages exported from InDesign.
 .case-slide-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -1221,16 +1221,16 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// Sikkerhedsnet: hvis JavaScript af en eller anden grund ikke kører,
-// skal billederne stadig vises (script.js sætter denne klasse på <body>)
+// Keep images visible when JavaScript is unavailable.
+// script.js removes the fallback class from the body.
 .no-js .case-slide-grid img{
   opacity:1;
   transform:none;
 }
 
-// ---------- CASE-BLOCK: tydeligt hierarki mellem afsnit (fx stay.html) ----------
-// Stor luft MELLEM blokke (Persona → Moodboard → Sketches → Wireframe → Prototype),
-// men tæt sammenhæng MELLEM en bloks egen tekst og billede.
+// ---------- CASE BLOCKS: clear section hierarchy ----------
+// Leave generous space between blocks, while keeping each block's
+// text and image close together.
 .case-block{
   margin-bottom:72px;
 
@@ -1275,7 +1275,7 @@ a{color:inherit; text-decoration:none;}
   line-height:1.3;
 }
 
-// Ens afstande i alle bokse på WORK-siderne.
+// Consistent spacing in all boxes on WORK pages.
 .main--case > :is(
   .case-peak-project-box,
   .case-stay-project-box,
@@ -1513,7 +1513,7 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// ---------- ABOUT — Why multimediedesign? (why.html) ----------
+// ---------- ABOUT — Why Multimedia Design? (why.html) ----------
 .main--about{
   max-width:1180px;
   margin:0 auto;
@@ -1606,10 +1606,9 @@ a{color:inherit; text-decoration:none;}
   .about-photo-card{ padding:16px; }
 }
 
-// ---- WHY-SIDEN, bygget som rigtig HTML/CSS i stedet for whymulti.svg ----
-// Erstatter den flade grafik: hvert afsnit fra skærmbillederne er nu ægte
-// markup, og de tre ikoner er tegnet som inline SVG direkte i why.html,
-// så de kan animeres helt normalt med CSS.
+// ---- WHY PAGE: HTML and CSS layout ----
+// Sections use HTML markup and inline SVG icons,
+// allowing the icons to be animated with CSS.
 
 .why-section{
   margin-bottom:8px;
@@ -1649,7 +1648,7 @@ a{color:inherit; text-decoration:none;}
   margin:56px 0;
 }
 
-// Ikon-plads: fælles ramme om alle tre SVG-ikoner, uanset hvor de bruges
+// Shared frame for SVG icons.
 .icon-badge{
   display:block;
   width:44px;
@@ -1659,7 +1658,7 @@ a{color:inherit; text-decoration:none;}
   svg{ display:block; width:100%; height:100%; }
 }
 
-// 01 — Step inside: pink tekstkort + foto side om side
+// 01 — Step inside: pink text card and photo side by side.
 .why-intro{
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -1762,7 +1761,7 @@ a{color:inherit; text-decoration:none;}
   span{ font-size:1em; margin-right:.35em; }
 }
 
-// 02 — Study trip: header-linje (ikon+titel | introtekst)
+// 02 — Study trip: heading row with icon, title and introductory text.
 .why-header-row{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -1873,7 +1872,7 @@ a{color:inherit; text-decoration:none;}
   margin:28px 0 0;
 }
 
-// Samme læsbare brødtekst som på de øvrige projektsider.
+// Consistent readable body text across project pages.
 .main--about{
   .about-photo-card > p,
   .why-header-row p,
@@ -1887,7 +1886,7 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// 03 — Visits: hvidt fotokort + pink tekstkort
+// 03 — Visits: white photo card and pink text card.
 .why-visits{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -1916,7 +1915,7 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// Stederne — IED Barcelona / TecnoCampus / Firma
+// Locations — IED Barcelona / TecnoCampus / Firma.
 .why-place{
   background:var(--sky);
   border-radius:10px;
@@ -1979,15 +1978,14 @@ a{color:inherit; text-decoration:none;}
 
 .why-place-grid .why-fashion-image{ object-position:85% center; }
 
-// ---- De tre animerede ikoner (rigtige inline SVG'er, ikke billedfiler) ----
+// ---- Animated inline SVG icons ----
 
-// Prikgitteret står stille.
+// The dot grid remains static.
 .icon-dots circle{
   animation:none;
 }
 
-// Stjernen der roterer og undervejs bliver til pilen — nu to rigtige
-// <svg>-figurer der krydsfades, mens hele ikonet drejer om sin midte.
+// Crossfade the star and arrow while rotating the icon around its center.
 .icon-star-arrow{
   display:block;
   position:relative;
@@ -2008,9 +2006,7 @@ a{color:inherit; text-decoration:none;}
   margin:0 auto 14px;
 }
 
-// Trappen vipper roligt frem og tilbage i vinklen — enklere end en
-// krydsfade, og matcher bedre den bløde, "levende" stemning i resten
-// af siden.
+// Gently tilt the staircase back and forth to match the page's animations.
 .icon-stairs-wobble{
   display:block;
   width:100%;
@@ -2052,7 +2048,7 @@ a{color:inherit; text-decoration:none;}
   .icon-star-arrow__arrow{ opacity:1; }
 }
 
-// Fotogrid til "Who am I?" (who.html) — uden hvid kortboks, direkte på baggrunden
+// Photo grid for Who Am I, placed directly on the page background.
 .who-photo-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -2122,7 +2118,7 @@ a{color:inherit; text-decoration:none;}
   .who-story__text{ padding:24px; }
 }
 
-// Generel pop-up reveal-klasse — kan bruges på billeder hvor som helst på sitet
+// General image reveal class for use across the site.
 .pop-reveal{
   width:100%;
   aspect-ratio:4 / 3;
@@ -2154,7 +2150,7 @@ a{color:inherit; text-decoration:none;}
   transform:none;
 }
 
-// Enkelt "You may also like"-kort (fx who.html, som kun peger på ét relateret projekt)
+// Single You may also like card.
 .related-single{
   display:flex;
   justify-content:center;
@@ -2221,8 +2217,8 @@ a{color:inherit; text-decoration:none;}
   }
 }
 
-// ---------- FÆLLES MOBILT LAYOUT ----------
-// Samler de sidste småskærmsrettelser, så alle sider følger samme rytme.
+// ---------- SHARED MOBILE LAYOUT ----------
+// Shared small-screen adjustments for consistent page layouts.
 body{
   overflow-x:hidden;
 }

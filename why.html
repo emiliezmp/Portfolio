@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,46 +12,11 @@
 <body class="no-js page-why">
 
 <!-- ============================================================
-     IKONER — genbruges tre steder på siden. Farven arves fra
-     currentColor, så de altid matcher --navy uden ekstra CSS.
+     ICONS — reused on this page. They inherit currentColor
+     to match --navy without additional CSS.
      ============================================================ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-
-    <!-- Prikgitter: bruges ved "01 Step inside" og "03 Visits" -->
-    <symbol id="icon-dots-def" viewBox="0 0 60 60">
-      <g class="icon-dots" fill="currentColor">
-        <circle cx="10" cy="10" r="8"/><circle cx="30" cy="10" r="8"/><circle cx="50" cy="10" r="8"/>
-        <circle cx="10" cy="30" r="8"/><circle cx="30" cy="30" r="8"/><circle cx="50" cy="30" r="8"/>
-        <circle cx="10" cy="50" r="8"/><circle cx="30" cy="50" r="8"/><circle cx="50" cy="50" r="8"/>
-      </g>
-    </symbol>
-
-    <!-- Stjerne der roterer og bliver til pilen: bruges ved "02 Study trip" -->
-    <symbol id="icon-star-def" viewBox="0 0 60 60">
-      <path fill="currentColor" d="M30 4 C31 20 31 20 47 22 C31 24 31 24 30 40 C29 24 29 24 13 22 C29 20 29 20 30 4 Z"/>
-    </symbol>
-    <symbol id="icon-arrow-def" viewBox="0 0 60 60">
-      <path d="M30 8v38M15 31l15 15 15-15" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-
-    <!-- Minimalistiske outline-ikoner til de tre besøg -->
-    <symbol id="icon-pencil-def" viewBox="0 0 24 24">
-      <path d="m4 20 3.8-1 10.8-10.8a2.1 2.1 0 0 0-3-3L4.8 16 4 20Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-      <path d="m13.9 6.9 3.2 3.2M19.2 3.2v2.4M21.6 5.6h-2.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="icon-cap-def" viewBox="0 0 24 24">
-      <path d="m2.5 9.5 9.5-4 9.5 4-9.5 4-9.5-4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-      <path d="M6.3 11.1v4.1c2.9 2.1 8.5 2.1 11.4 0v-4.1M21.5 9.5v5.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="icon-briefcase-def" viewBox="0 0 24 24">
-      <rect x="3" y="7.5" width="18" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <path d="M9 7.5V5.8c0-.7.6-1.3 1.3-1.3h3.4c.7 0 1.3.6 1.3 1.3v1.7M3 12.2h18M10 12.2v1.5h4v-1.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-    <symbol id="icon-camera-def" viewBox="0 0 24 24">
-      <path d="M4 7.5h3l1.4-2h7.2l1.4 2h3v11H4v-11Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-      <circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/>
-    </symbol>
     <symbol id="icon-bulb-def" viewBox="0 0 24 24">
       <path d="M8.3 15.2c-1.5-1.1-2.5-2.9-2.5-5A6.2 6.2 0 0 1 12 4a6.2 6.2 0 0 1 6.2 6.2c0 2.1-1 3.9-2.5 5-.8.6-1.2 1.3-1.3 2.1H9.6c-.1-.8-.5-1.5-1.3-2.1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M9.7 20h4.6M10 17.3h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -65,7 +30,7 @@
       <path d="m3 11 7.2 1.1L17.5 4c.7-.8 1.8-1.1 2.7-.5.9.6 1.1 1.8.5 2.7l-5.2 7.1 4.5 1.3-1.5 2-5.5-.2-3.4 4.1-1.7-.8 1.8-4.2-4.9-1.8L3 11Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
 
-    <!-- Trappe-ikon til "Finding my path" -->
+    <!-- Staircase icon for "Finding my path" -->
     <symbol id="icon-stairs-def" viewBox="0 0 60 60">
       <path d="M7 51h12V39h12V27h12V15h10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
@@ -77,11 +42,11 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <a href="index.html" class="brand" aria-label="Til forsiden">
+    <a href="index.html" class="brand" aria-label="Back to home">
       <img src="img/logo1.webp?v=1" alt="">
     </a>
 
-    <nav aria-label="Hovednavigation">
+    <nav aria-label="Main navigation">
       <div class="nav-group">
         <div class="nav-label">WORK</div>
         <ul class="nav-links">
@@ -133,7 +98,7 @@
     </header>
 
     <div class="why-video-box">
-      <video autoplay muted loop playsinline aria-label="Video fra Emilies hverdag">
+      <video autoplay muted loop playsinline aria-label="Video of Emilie’s everyday life">
         <source src="img/why.mp4" type="video/mp4">
       </video>
     </div>
@@ -159,7 +124,7 @@
          02 — STUDY TRIP
          =================================================== -->
     <section class="why-section why-story-row why-inspiration">
-      <img class="why-mobile-after-path" src="img/web.webp" alt="Emilie arbejder med multimediedesign">
+      <img class="why-mobile-after-path" src="img/web.webp" alt="Emilie working on multimedia design">
 
       <div class="about-photo-card about-photo-card--pink">
         <span class="icon-badge"><svg><use href="#icon-bulb-def"></use></svg></span>
@@ -178,12 +143,12 @@
         <p>During a study trip to Barcelona, I had the opportunity to explore the city's creative environment and visit a company and two educational institutions within design, media and technology.</p>
       </div>
 
-      <img src="img/stairs.webp" alt="Emilie på en trappe i Barcelona">
+      <img src="img/stairs.webp" alt="Emilie on a staircase in Barcelona">
     </section>
 
     <section class="why-section why-story-row">
       <div class="why-story-image">
-        <img src="img/barcelona-cropped-opt.webp" alt="Klassen på besøg hos den kreative virksomhed Firma">
+        <img src="img/barcelona-cropped-opt.webp" alt="The class visiting the creative company Firma">
       </div>
 
       <div class="about-photo-card about-photo-card--pink">
@@ -197,7 +162,7 @@
     </section>
 
     <section class="why-section why-study-trip">
-      <div class="why-scroll-gallery" aria-label="Flere billeder fra studieturen">
+      <div class="why-scroll-gallery" aria-label="More photos from the study trip">
         <figure>
           <img src="img/sagrada.webp" alt="Sagrada Familia">
         </figure>
@@ -205,7 +170,6 @@
           <img src="img/pink.webp" alt="Decorated column near Casa Vicens">
         </figure>
         <figure>
-          <!-- Filnavn ukendt endnu — sæt det rigtige når billedet er i img-mappen -->
           <img src="img/rushlife.webp" alt="Window in the Gothic Quarter">
         </figure>
         <figure>
@@ -246,7 +210,7 @@
       <h2>You may also like</h2>
       <div class="gallery gallery--related">
         <a class="gallery-item" href="who.html">
-          <img src="img/green.webp" alt="Portræt af Emilie">
+          <img src="img/green.webp" alt="Portrait of Emilie">
           <span class="gallery-overlay"></span>
           <span class="gallery-overlay-text">
             <span class="gallery-about-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c.5-4.3 3-6.5 7-6.5s6.5 2.2 7 6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
@@ -262,7 +226,7 @@
   </main>
 </div>
 
-<a class="back-to-top" href="#" aria-label="Tilbage til toppen">
+<a class="back-to-top" href="#" aria-label="Back to top">
   <svg class="back-to-top__heart" viewBox="0 0 64 56" aria-hidden="true" focusable="false"><path fill="currentColor" d="M32 53C27 48 3 31 3 17C3 1 23-3 32 12C41-3 61 1 61 17C61 31 37 48 32 53Z"/></svg>
   <svg class="back-to-top__arrow" viewBox="0 0 24 28" fill="none" aria-hidden="true" focusable="false"><path d="M12 24V4M5 11l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
