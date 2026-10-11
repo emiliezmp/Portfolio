@@ -3256,3 +3256,20 @@ video {
     font-size: 1rem;
   }
 }
+
+/* Shared small headings across all Work pages. */
+.main--case:is(.main--peak, .main--stay, .main--food, .main--brandguide) .work-subheading {
+  font-family: "Lora", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--navy);
+}
+
+@media (max-width: 700px) {
+  .main--case:is(.main--peak, .main--stay, .main--food, .main--brandguide) .work-subheading {
+    font-size: 1rem;
+  }
+}
