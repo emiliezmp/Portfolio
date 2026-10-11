@@ -55,6 +55,38 @@ document.addEventListener('DOMContentLoaded', () => {
   // Remove the CSS fallback once JavaScript is running.
   document.body.classList.remove('no-js');
 
+  document.querySelectorAll('.peak-slider').forEach(slider => {
+    const track = slider.querySelector('.peak-slider__track');
+    const slides = [...track.children];
+    const controls = document.createElement('div');
+    controls.className = 'peak-slider__controls';
+    controls.innerHTML = '<button type="button" aria-label="Previous image">←</button><span aria-live="polite" aria-atomic="true"></span><button type="button" aria-label="Next image">→</button>';
+    slider.append(controls);
+    const [previous, next] = controls.querySelectorAll('button');
+    const counter = controls.querySelector('span');
+    const currentIndex = () => Math.round(track.scrollLeft / track.clientWidth);
+    const update = () => {
+      const index = currentIndex();
+      previous.disabled = index === 0;
+      next.disabled = index === slides.length - 1;
+      counter.textContent = `${index + 1} / ${slides.length}`;
+    };
+    const move = direction => {
+      const index = Math.max(0, Math.min(slides.length - 1, currentIndex() + direction));
+      track.scrollTo({ left: index * track.clientWidth, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    };
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    track.addEventListener('keydown', event => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      move(event.key === 'ArrowLeft' ? -1 : 1);
+    });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+
   // Show the back-to-top button after the user has scrolled down.
   const backToTop = document.querySelector('.back-to-top');
   if (backToTop) {
