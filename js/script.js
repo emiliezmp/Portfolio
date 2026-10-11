@@ -233,7 +233,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Expand cropped research previews; the image link also works without JavaScript.
+// Make all Food project images expandable while preserving existing links.
+document.querySelectorAll(".main--food img").forEach(image => {
+  if (image.closest("a, button")) return;
+  const link = document.createElement("a");
+  link.className = "food-image-preview";
+  link.href = image.getAttribute("src");
+  link.setAttribute("data-image-preview", "");
+  link.setAttribute("aria-label", `View full image: ${image.alt}`);
+  image.replaceWith(link);
+  link.append(image);
+});
+
+// Expand image previews; the image link also works without JavaScript.
 document.querySelectorAll('[data-image-preview]').forEach(link => {
   link.addEventListener('click', event => {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;

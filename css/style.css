@@ -1414,10 +1414,6 @@ a {
   padding: 0;
 }
 
-.main--food .case-food-final-prototype-box > .case-subheading {
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
 
 .main--food .case-food-final-prototype-box > .case-subheading + :is(.case-triple-grid, .case-double-grid) {
   margin-top: 6px;
@@ -2852,4 +2848,411 @@ video {
   margin: 0;
   font-size: 1.2rem;
   line-height: 1.3;
+}
+
+/* Food research text on the left and KWHL chart on the right. */
+.main--food .case-food-research-box > .food-research-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.main--food .food-research-copy p {
+  margin: 0 0 20px;
+  text-align: left;
+}
+
+.main--food .food-research-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.main--food .food-research-layout > img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .main--food .case-food-research-box > .food-research-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Moodboard slider beside the visualisation text. */
+.main--food .case-food-moodboard-box > .food-visualisation-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.main--food .food-visualisation-copy p {
+  margin: 0 0 20px;
+  text-align: left;
+}
+.main--food .food-visualisation-copy p:last-child {
+  margin-bottom: 0;
+}
+.food-moodboard-slider { min-width: 0; }
+.main--food .food-moodboard-slider img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+@media (max-width: 700px) {
+  .main--food .case-food-moodboard-box > .food-visualisation-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.food-moodboard-slider .peak-slider__slide > .food-moodboard-title {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Align each moodboard title with the full-width image below it. */
+.main--food .food-moodboard-slider .peak-slider__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  margin: 0;
+}
+
+.food-moodboard-slider .peak-slider__slide > .food-moodboard-title {
+  padding: 0;
+  text-align: left;
+}
+
+.food-moodboard-preview {
+  display: block;
+  border-radius: 6px;
+  cursor: zoom-in;
+}
+
+.food-moodboard-preview:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.food-visualisation-copy {
+  display: grid;
+  gap: 24px;
+}
+
+.food-visualisation-copy h4 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+/* Food sketches and prototype use the same paired layout as Stay. */
+.main--food .case-food-development-box > .stay-development-layout {
+  margin-top: 24px;
+}
+.food-development-copy p { margin: 0 0 14px; text-align: left; }
+.food-development-copy p:last-child { margin-bottom: 0; }
+.main--food .case-food-development-box .case-double-grid {
+  aspect-ratio: 562 / 1434;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+}
+.food-development-prototype { aspect-ratio: 562 / 1434; }
+.main--food .case-food-development-box .stay-development-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  padding: 0;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 6px;
+}
+
+.food-image-preview {
+  display: block;
+  min-width: 0;
+  border-radius: 6px;
+  cursor: zoom-in;
+}
+.food-image-preview:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.main--food .case-food-bag-frame > .food-image-preview {
+  height: 100%;
+}
+.main--food .food-research-layout > .food-image-preview img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0;
+}
+
+.food-prototype-slider {
+  min-width: 0;
+}
+
+.main--food .food-prototype-slider img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+.main--food .food-prototype-slider--mobile img {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.food-final-prototypes-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 28px;
+}
+
+.food-final-prototypes-column {
+  min-width: 0;
+}
+
+.food-final-prototypes-column > h3 {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .food-final-prototypes-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Matching image areas for the mobile and desktop prototype sliders. */
+.main--food .food-final-prototypes-layout .food-prototype-slider img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  object-position: top center;
+  margin: 0;
+}
+
+/* Smaller, equally sized prototype sliders. */
+.food-final-prototypes-column > .food-prototype-slider {
+  width: 100%;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.food-final-prototypes-column > .case-subheading {
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+/* Align each heading with its slider and keep both columns level. */
+.food-final-prototypes-column {
+  width: 100%;
+  max-width: 280px;
+  justify-self: center;
+}
+
+.food-final-prototypes-column > .case-subheading {
+  margin: 0 0 14px;
+  text-align: left;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.food-final-prototypes-column > .food-prototype-slider {
+  max-width: none;
+  margin: 0;
+}
+
+@media (min-width: 701px) {
+  .food-final-prototypes-layout {
+    align-items: stretch;
+    row-gap: 14px;
+  }
+  .food-final-prototypes-column {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 2;
+  }
+  .food-final-prototypes-column > .case-subheading {
+    margin-bottom: 0;
+  }
+}
+
+.food-final-prototypes-column > .case-subheading {
+  font-size: 1.1rem;
+}
+
+/* Align the visible mobile image with its heading. */
+.main--food .food-final-prototypes-layout .food-prototype-slider--mobile img {
+  object-position: top left;
+}
+
+/* Center the mobile heading and image above the slider arrows. */
+.food-final-prototypes-column:has(.food-prototype-slider--mobile) > .case-subheading {
+  text-align: center;
+}
+
+.main--food .food-final-prototypes-layout .food-prototype-slider--mobile img {
+  object-position: top center;
+}
+
+/* Mobile layouts for all Work case studies. */
+.main--case {
+  min-width: 0;
+}
+.main--case :is(.peak-slider__track, .case-slide-grid) {
+  overscroll-behavior-x: contain;
+}
+
+@media (max-width: 700px) {
+  .main--case > :is(.case-hero-box, .case-section, .case-copy, .case-block,
+    .case-peak-project-box, .case-stay-project-box) {
+    padding: 18px;
+    margin-bottom: 32px;
+    min-width: 0;
+  }
+
+  .main--case :is(.case-subheading, .case-eyebrow) {
+    overflow-wrap: anywhere;
+  }
+
+  .main--case :is(.peak-research-copy, .peak-wireframes-copy,
+    .stay-research-copy, .food-research-copy, .food-visualisation-copy,
+    .food-development-copy) p,
+  .main--case .case-block-text,
+  .main--case .peak-wireframes-layout > p,
+  .main--case .peak-slider__slide figcaption {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .main--case :is(.peak-research-layout, .peak-wireframes-layout,
+    .stay-research-layout, .stay-moodboard-layout, .food-research-layout,
+    .food-visualisation-layout, .food-final-prototypes-layout) > * {
+    min-width: 0;
+  }
+
+  .peak-style-tiles__grid,
+  .peak-logo-gallery__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .stay-development-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .stay-development-column {
+    display: block;
+    grid-row: auto;
+  }
+  .stay-development-column > h4 {
+    margin-bottom: 10px;
+  }
+  .stay-development-column > p,
+  .stay-development-column > .food-development-copy {
+    margin-bottom: 18px;
+  }
+
+  .main--food .case-food-development-box .case-double-grid {
+    aspect-ratio: 3 / 4;
+  }
+  .food-development-prototype {
+    aspect-ratio: 3 / 4;
+  }
+
+  .food-final-prototypes-column {
+    max-width: 320px;
+  }
+  .main--brandguide .case-slide-grid {
+    grid-auto-columns: 100%;
+    padding: 0 0 12px;
+    gap: 16px;
+  }
+
+  .main--food .case-food-bag-frame {
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .image-preview-dialog {
+    box-sizing: border-box;
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    max-height: 90dvh;
+    padding: 12px;
+    overflow-y: auto;
+  }
+  .image-preview-dialog button {
+    min-height: 44px;
+    position: sticky;
+    top: 0;
+    background: var(--sky);
+    border: 1px solid currentColor;
+    border-radius: 6px;
+    z-index: 1;
+  }
+}
+
+/* Compact spacing at the bottom of Food on mobile. */
+@media (max-width: 700px) {
+  .main--food .case-food-result-box > .case-double-grid {
+    padding: 0;
+    gap: 14px;
+    align-items: start;
+  }
+  .main--food .case-food-result-box > .food-image-preview img {
+    padding: 0;
+  }
+  .main--food .case-food-result-box .case-food-bag-frame {
+    aspect-ratio: 1600 / 1067;
+    height: auto;
+  }
+  .main--food > .case-food-result-box {
+    margin-bottom: 24px;
+  }
+  .main--food > .case-related {
+    margin-top: 24px;
+    padding-bottom: 0;
+  }
+}
+
+/* Center both prototype headings on desktop and mobile. */
+.main--food .food-final-prototypes-column > .case-subheading {
+  text-align: center;
+}
+
+/* Bold logo labels above their images. */
+.peak-logo-gallery__grid .peak-slider__slide > figcaption {
+  margin: 0 0 14px;
+  font-weight: 700;
+}
+
+/* Prototype labels match body text at each viewport size. */
+.main--food .food-final-prototypes-column > .case-subheading {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 700px) {
+  .main--food .food-final-prototypes-column > .case-subheading {
+    font-size: 1rem;
+  }
 }
