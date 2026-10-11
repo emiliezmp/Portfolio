@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Remove the CSS fallback once JavaScript is running.
   document.body.classList.remove('no-js');
+  setupImagePreviews();
 
   document.querySelectorAll('.peak-slider').forEach(slider => {
     const track = slider.querySelector('.peak-slider__track');
@@ -233,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function setupImagePreviews() {
 // Make all Food project images expandable while preserving existing links.
 document.querySelectorAll(".main--food img").forEach(image => {
   if (image.closest("a, button")) return;
@@ -246,20 +248,41 @@ document.querySelectorAll(".main--food img").forEach(image => {
 });
 
 // Expand image previews; the image link also works without JavaScript.
+// Keep image links (including project cards and the logo) working as before.
+// Use the image itself as a control to preserve grid and cropped-image layouts.
+document.querySelectorAll('img').forEach(image => {
+  if (image.closest('a, button')) return;
+  image.setAttribute('data-image-preview', '');
+  image.setAttribute('role', 'button');
+  image.tabIndex = 0;
+  image.setAttribute('aria-label', `View full image: ${image.alt || 'Image'}`);
+  image.addEventListener('keydown', event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    image.click();
+  });
+});
+
 document.querySelectorAll('[data-image-preview]').forEach(link => {
+  link.setAttribute('aria-haspopup', 'dialog');
   link.addEventListener('click', event => {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-    if (typeof HTMLDialogElement === 'undefined') return;
+    const originalImage = link.matches('img') ? link : link.querySelector('img');
+    const source = link.matches('img') ? originalImage.currentSrc || originalImage.src : link.href;
+    if (typeof HTMLDialogElement === 'undefined') {
+      if (link.matches('img')) window.location.assign(source);
+      return;
+    }
     event.preventDefault();
     const dialog = document.createElement('dialog');
     dialog.className = 'image-preview-dialog';
-    dialog.setAttribute('aria-label', link.querySelector('img').alt);
+    dialog.setAttribute('aria-label', originalImage.alt || 'Image preview');
     const close = document.createElement('button');
     close.type = 'button';
     close.textContent = 'Close';
     const image = document.createElement('img');
-    image.src = link.href;
-    image.alt = link.querySelector('img').alt;
+    image.src = source;
+    image.alt = originalImage.alt;
     dialog.append(close, image);
     document.body.append(dialog);
     close.addEventListener('click', () => dialog.close());
@@ -275,3 +298,4 @@ document.querySelectorAll('[data-image-preview]').forEach(link => {
     dialog.showModal();
   });
 });
+}
