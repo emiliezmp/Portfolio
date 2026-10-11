@@ -232,3 +232,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Expand cropped research previews; the image link also works without JavaScript.
+document.querySelectorAll('[data-image-preview]').forEach(link => {
+  link.addEventListener('click', event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    if (typeof HTMLDialogElement === 'undefined') return;
+    event.preventDefault();
+    const dialog = document.createElement('dialog');
+    dialog.className = 'image-preview-dialog';
+    dialog.setAttribute('aria-label', link.querySelector('img').alt);
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.textContent = 'Close';
+    const image = document.createElement('img');
+    image.src = link.href;
+    image.alt = link.querySelector('img').alt;
+    dialog.append(close, image);
+    document.body.append(dialog);
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', click => {
+      if (click.target !== dialog) return;
+      const bounds = dialog.getBoundingClientRect();
+      if (click.clientX < bounds.left || click.clientX > bounds.right || click.clientY < bounds.top || click.clientY > bounds.bottom) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      dialog.remove();
+      link.focus();
+    }, { once: true });
+    dialog.showModal();
+  });
+});

@@ -2670,3 +2670,186 @@ video {
 .main--peak .peak-brand-assets--welcome .peak-welcome-animation {
   border-radius: 6px;
 }
+
+.main--stay .stay-research-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+  margin-top: 24px;
+}
+.stay-research-copy { text-align: left; }
+.stay-research-copy h4 { margin: 0 0 10px; font-size: 1.2rem; }
+.main--stay .stay-research-copy p { margin: 0 0 20px; text-align: left; }
+.stay-research-preview {
+  display: block;
+  position: relative;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  border-radius: 6px;
+  color: inherit;
+}
+.stay-research-preview img { display: block; width: 100%; height: auto; }
+.stay-research-preview span {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 8px 12px;
+  background: var(--sky);
+  border-radius: 6px;
+}
+.image-preview-dialog {
+  width: min(1100px, 92vw);
+  max-height: 90vh;
+  padding: 20px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--sky);
+}
+.image-preview-dialog::backdrop { background: rgba(0, 0, 0, 0.65); }
+.image-preview-dialog img { display: block; width: 100%; height: auto; }
+.image-preview-dialog button {
+  display: block;
+  margin: 0 0 16px auto;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  .main--stay .stay-research-layout { grid-template-columns: 1fr; }
+}
+
+/* Let the persona preview match the height of the research text. */
+.main--stay .stay-research-preview {
+  align-self: stretch;
+  aspect-ratio: auto;
+}
+
+.main--stay .stay-research-preview img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 700px) {
+  .main--stay .stay-research-preview {
+    aspect-ratio: 2 / 1;
+  }
+}
+
+/* Stay moodboard beside left-aligned text. */
+.main--stay .case-stay-moodboard-box > .stay-moodboard-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.stay-moodboard-layout > p {
+  margin: 0;
+  text-align: left;
+}
+
+.main--stay .stay-moodboard-layout > img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .main--stay .case-stay-moodboard-box > .stay-moodboard-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sketches and wireframe share one section. */
+.stay-development-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 28px;
+}
+
+.stay-development-column {
+  min-width: 0;
+}
+
+.stay-development-column > h3 {
+  margin: 0 0 14px;
+}
+
+.stay-development-column > p {
+  margin: 0 0 24px;
+  text-align: left;
+}
+
+.main--stay .stay-development-column img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  .stay-development-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Equal image areas, with aligned headings and copy above them. */
+.stay-development-layout {
+  align-items: stretch;
+  row-gap: 14px;
+}
+.stay-development-column {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+}
+.stay-development-column > h3,
+.stay-development-column > p {
+  margin: 0;
+}
+.main--stay .case-stay-sketches-box .case-double-grid {
+  aspect-ratio: 1950 / 1436;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+}
+.stay-development-preview {
+  display: block;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: zoom-in;
+}
+.stay-development-preview--wireframe {
+  aspect-ratio: 1950 / 1436;
+}
+.main--stay .stay-development-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 6px;
+}
+.stay-development-preview:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.main--stay .case-stay-development-box > .stay-development-layout {
+  margin-top: 24px;
+}
+
+.stay-development-column > h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
