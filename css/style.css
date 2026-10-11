@@ -2800,6 +2800,13 @@ img[data-image-preview]:focus-visible {
   .main--stay .stay-research-preview {
     aspect-ratio: 2 / 1;
   }
+
+  .main--stay .stay-research-preview img {
+    position: static;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
 }
 
 /* Stay moodboard beside left-aligned text. */
