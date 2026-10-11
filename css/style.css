@@ -2703,6 +2703,31 @@ video {
   border-radius: 6px;
 }
 
+/* Let the images give their frames height in the single-column mobile layout. */
+@media (max-width: 700px) {
+  .main--peak .peak-brand-assets--welcome .peak-welcome-frame {
+    grid-row: 1;
+  }
+
+  .main--peak .peak-welcome-frame,
+  .main--peak .peak-brand-assets__social-frame {
+    aspect-ratio: auto;
+  }
+
+  .main--peak .peak-welcome-frame .peak-welcome-animation,
+  .main--peak .peak-brand-assets__social-frame .peak-brand-assets__social {
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+  }
+
+  .main--peak .peak-brand-assets__social-frame .peak-brand-assets__social {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
+
 .main--stay .stay-research-layout {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
