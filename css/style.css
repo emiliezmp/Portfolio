@@ -595,14 +595,6 @@ a {
   max-height: 560px;
 }
 
-.main--peak .case-medium-image {
-  max-width: 360px;
-}
-
-.main--peak .case-triple-grid img {
-  max-height: 300px;
-}
-
 .main--peak .case-double-grid img {
   max-height: 420px;
 }
@@ -782,8 +774,7 @@ a {
   max-height: none;
 }
 
-.case-peak-logo-box .case-full-image,
-.case-peak-logo-box .case-medium-image {
+.case-peak-logo-box .case-full-image {
   background: transparent;
   padding: 0;
 }
@@ -797,8 +788,7 @@ a {
 }
 
 .main--case.main--peak > :is(.case-hero-box, .case-section) .case-full-image,
-.main--case.main--peak > :is(.case-hero-box, .case-section) .case-double-grid,
-.main--case.main--peak > :is(.case-hero-box, .case-section) .case-triple-grid {
+.main--case.main--peak > :is(.case-hero-box, .case-section) .case-double-grid {
   background: transparent;
   padding: 0;
 }
@@ -809,18 +799,6 @@ a {
 }
 
 .main--peak > :is(.case-section, .case-hero-box) .case-double-grid img {
-  height: auto;
-  max-height: none;
-  -o-object-fit: contain;
-  object-fit: contain;
-}
-
-.main--peak > .case-section .case-triple-grid {
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-.main--peak > .case-section .case-triple-grid img {
   height: auto;
   max-height: none;
   -o-object-fit: contain;
@@ -905,8 +883,7 @@ a {
 }
 
 .main--food .case-full-image,
-.main--food .case-double-grid,
-.main--food .case-triple-grid {
+.main--food .case-double-grid {
   box-sizing: border-box;
   background: var(--sky);
   padding: 16px;
@@ -976,9 +953,7 @@ a {
 }
 
 .main--case:not(.main--food) .case-full-image,
-.main--case:not(.main--food) .case-medium-image,
 .main--case:not(.main--food) .case-double-grid,
-.main--case:not(.main--food) .case-triple-grid,
 .main--case:not(.main--food) .case-slide-grid {
   box-sizing: border-box;
   background: var(--sky);
@@ -997,8 +972,7 @@ a {
 }
 
 .main--food .case-full-image,
-.main--food .case-double-grid img,
-.main--food .case-triple-grid img {
+.main--food .case-double-grid img {
   height: auto;
   max-height: none;
   -o-object-fit: contain;
@@ -1085,6 +1059,30 @@ a {
     padding: 20px;
   }
 }
+.case-slide-scroller.is-scroll-enhanced .case-slide-grid {
+  scrollbar-width: none;
+}
+
+.case-slide-scroller.is-scroll-enhanced .case-slide-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.case-slide-scroll-progress {
+  display: block;
+  height: 2px;
+  margin-top: 28px;
+  background: rgba(23, 77, 132, 0.2);
+}
+
+.case-slide-scroll-progress::after {
+  content: "";
+  display: block;
+  height: 100%;
+  background: var(--pink);
+  transform: scaleX(var(--guide-scroll-progress, 0));
+  transform-origin: left;
+}
+
 .case-slide-scroller-hint {
   display: block;
   margin-top: 10px;
@@ -1097,19 +1095,7 @@ a {
   text-align: right;
 }
 
-.case-full-image.case-persona-image {
-  max-height: none;
-  -o-object-fit: contain;
-  object-fit: contain;
-}
-
 .case-full-image.case-moodboard-image {
-  max-height: none;
-  -o-object-fit: contain;
-  object-fit: contain;
-}
-
-.case-full-image.case-wireframe-image {
   max-height: none;
   -o-object-fit: contain;
   object-fit: contain;
@@ -1225,11 +1211,6 @@ a {
   margin-bottom: 14px;
 }
 
-.case-section--center {
-  display: flex;
-  justify-content: center;
-}
-
 .case-full-image {
   width: 100%;
   max-height: 420px;
@@ -1239,33 +1220,6 @@ a {
   display: block;
 }
 
-.case-medium-image {
-  max-width: 260px;
-  width: 100%;
-  border-radius: 6px;
-  display: block;
-}
-
-.case-triple-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.case-triple-grid img {
-  width: 100%;
-  max-height: 220px;
-  -o-object-fit: cover;
-  object-fit: cover;
-  border-radius: 6px;
-  display: block;
-}
-
-@media (max-width: 700px) {
-  .case-triple-grid {
-    grid-template-columns: 1fr;
-  }
-}
 .case-double-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1319,10 +1273,6 @@ a {
     transform: none;
     transition: none;
   }
-}
-.no-js .case-slide-grid img {
-  opacity: 1;
-  transform: none;
 }
 
 .case-block {
@@ -1384,9 +1334,6 @@ a {
   margin-bottom: 56px;
 }
 
-.main--case.main--brandguide > .case-slide-grid {
-  padding: 28px;
-}
 
 .main--case > .case-copy {
   gap: 0;
@@ -1420,7 +1367,7 @@ a {
 .case-hero-box,
 .case-section,
 .case-copy,
-.case-block) > :is(.case-full-image, .case-medium-image, .case-double-grid, .case-triple-grid, .case-section--center, .case-peak-final-mockup) + :is(.case-full-image, .case-medium-image, .case-double-grid, .case-triple-grid, .case-section--center, .case-peak-final-mockup) {
+.case-block) > :is(.case-full-image, .case-double-grid, .case-peak-final-mockup) + :is(.case-full-image, .case-double-grid, .case-peak-final-mockup) {
   margin-top: 20px;
 }
 
@@ -1429,13 +1376,13 @@ a {
 .case-hero-box,
 .case-section,
 .case-copy,
-.case-block) > :is(.case-subheading, .case-eyebrow, p) + :is(.case-full-image, .case-medium-image, .case-double-grid, .case-triple-grid, .case-section--center, .case-peak-final-mockup),
+.case-block) > :is(.case-subheading, .case-eyebrow, p) + :is(.case-full-image, .case-double-grid, .case-peak-final-mockup),
 .main--case > :is(.case-peak-project-box,
 .case-stay-project-box,
 .case-hero-box,
 .case-section,
 .case-copy,
-.case-block) > :is(.case-full-image, .case-medium-image, .case-double-grid, .case-triple-grid, .case-section--center, .case-peak-final-mockup) + :is(.case-subheading, .case-eyebrow, p) {
+.case-block) > :is(.case-full-image, .case-double-grid, .case-peak-final-mockup) + :is(.case-subheading, .case-eyebrow, p) {
   margin-top: 32px;
 }
 
@@ -1444,13 +1391,12 @@ a {
 .case-hero-box,
 .case-section,
 .case-copy,
-.case-block) :is(.case-full-image, .case-medium-image, .case-double-grid, .case-triple-grid) {
+.case-block) :is(.case-full-image, .case-double-grid) {
   background: transparent;
   padding: 0;
 }
 
-
-.main--food .case-food-final-prototype-box > .case-subheading + :is(.case-triple-grid, .case-double-grid) {
+.main--food .case-food-final-prototype-box > .case-subheading + :is(.case-double-grid) {
   margin-top: 6px;
 }
 
@@ -1462,9 +1408,6 @@ a {
   .case-copy,
   .case-block,
   .case-slide-grid) {
-    padding: 20px;
-  }
-  .main--case.main--brandguide > .case-slide-grid {
     padding: 20px;
   }
 }
@@ -2372,7 +2315,6 @@ video {
   margin-right: auto;
 }
 
-
 /* Logo development and mockup shown side by side. */
 .peak-logo-gallery__grid {
   display: grid;
@@ -2386,7 +2328,6 @@ video {
     grid-template-columns: 1fr;
   }
 }
-
 
 /* Matching image frames for the two logo examples. */
 .main--peak .case-peak-logo-box .peak-logo-gallery__grid img {
@@ -2405,15 +2346,6 @@ video {
 /* Crop the final logo mockup to bring the logo and coffee closer. */
 .main--peak .case-peak-logo-box .peak-logo-gallery__grid img[src="img/coffee.webp"] {
   object-fit: cover;
-  object-position: center;
-}
-
-/* Equal responsive image frames for both style tiles. */
-.main--peak .peak-slider--style-tiles .peak-slider__slide img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1408 / 996;
-  object-fit: contain;
   object-position: center;
 }
 

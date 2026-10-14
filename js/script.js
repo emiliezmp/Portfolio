@@ -52,8 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     placeholder.outerHTML = renderProjects(selectedProjects);
   });
 
-  // Remove the CSS fallback once JavaScript is running.
-  document.body.classList.remove('no-js');
   setupImagePreviews();
 
   document.querySelectorAll('.peak-slider').forEach(slider => {
@@ -86,6 +84,30 @@ document.addEventListener('DOMContentLoaded', () => {
     track.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
+  });
+
+  // Match the sidebar's progress line to the Brand Guide's horizontal scroll.
+  document.querySelectorAll('.main--brandguide .case-slide-scroller').forEach(scroller => {
+    const track = scroller.querySelector('.case-slide-grid');
+    if (!track) return;
+    const progressLine = document.createElement('span');
+    progressLine.className = 'case-slide-scroll-progress';
+    progressLine.setAttribute('aria-hidden', 'true');
+    track.insertAdjacentElement('afterend', progressLine);
+    scroller.classList.add('is-scroll-enhanced');
+
+    const updateProgress = () => {
+      const maximumScroll = track.scrollWidth - track.clientWidth;
+      const progress = maximumScroll > 0 ? track.scrollLeft / maximumScroll : 1;
+      progressLine.style.setProperty('--guide-scroll-progress', Math.min(Math.max(progress, 0), 1));
+    };
+    track.addEventListener('scroll', updateProgress, { passive: true });
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(updateProgress).observe(track);
+    } else {
+      window.addEventListener('resize', updateProgress);
+    }
+    updateProgress();
   });
 
   // Show the back-to-top button after the user has scrolled down.
