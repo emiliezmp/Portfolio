@@ -251,7 +251,7 @@ document.querySelectorAll(".main--food img").forEach(image => {
 // Keep image links (including project cards and the logo) working as before.
 // Use the image itself as a control to preserve grid and cropped-image layouts.
 document.querySelectorAll('img').forEach(image => {
-  if (image.closest('a, button')) return;
+  if (image.closest('a, button, .main--home .hero--image')) return;
   image.setAttribute('data-image-preview', '');
   image.setAttribute('role', 'button');
   image.tabIndex = 0;
