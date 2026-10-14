@@ -981,11 +981,13 @@ a {
   }
 }
 
-.case-slide-scroller.is-scroll-enhanced .case-slide-grid {
+.case-slide-grid.is-scroll-enhanced,
+.why-scroll-gallery.is-scroll-enhanced {
   scrollbar-width: none;
 }
 
-.case-slide-scroller.is-scroll-enhanced .case-slide-grid::-webkit-scrollbar {
+.case-slide-grid.is-scroll-enhanced::-webkit-scrollbar,
+.why-scroll-gallery.is-scroll-enhanced::-webkit-scrollbar {
   display: none;
 }
 

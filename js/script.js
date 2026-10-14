@@ -86,15 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
     update();
   });
 
-  // Match the sidebar's progress line to the Brand Guide's horizontal scroll.
-  document.querySelectorAll('.main--brandguide .case-slide-scroller').forEach(scroller => {
-    const track = scroller.querySelector('.case-slide-grid');
-    if (!track) return;
+  // Match horizontal gallery progress lines to the sidebar's style.
+  document.querySelectorAll('.main--brandguide .case-slide-grid, .why-scroll-gallery').forEach(track => {
     const progressLine = document.createElement('span');
     progressLine.className = 'case-slide-scroll-progress';
     progressLine.setAttribute('aria-hidden', 'true');
     track.insertAdjacentElement('afterend', progressLine);
-    scroller.classList.add('is-scroll-enhanced');
+    track.classList.add('is-scroll-enhanced');
 
     const updateProgress = () => {
       const maximumScroll = track.scrollWidth - track.clientWidth;
